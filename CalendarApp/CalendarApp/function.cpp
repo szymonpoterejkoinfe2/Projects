@@ -100,10 +100,10 @@ void CheckCalendarMenu(bool &GoBack)
 bool ValidateInputYearData( const std::string& Year, bool &LoopBool) {
 
 	//std::cout << Year;
-	for (int i = 0; i < Year.size(); i++)
+	for (int YearDigit = 0; YearDigit < Year.size(); YearDigit++)
 	{
 		
-		if (!isdigit(Year[i]))
+		if (!isdigit(Year[YearDigit]))
 		{
 			//std::cout << "improper input provided";
 			return false;
@@ -122,15 +122,39 @@ bool ValidateInputYearData( const std::string& Year, bool &LoopBool) {
 }
 
 void AddEventMenu(bool& LoopBool) {
-	std::string Country, Town, Street, Number,EventName;
-	
+	std::string Country, Town, Street, Number,EventName, Day, Month, Year;
+	char Periodic;
+	bool isPeriodic;
+
+	// Naming Event
 	std::cout << "Name your Event: ";
 	std::cin.ignore(1, '\n');
 	getline(std::cin, EventName);
+
+	std::cin.clear();
+
+
+	//Specifying Event Date
+	std::cout << "Enter event date year: "; std::cin >> Year; std::cout << " Enter event date month: "; std::cin >> Month; std::cout << " Enter event date day: "; std::cin >> Day; std::cout << " Is event periodic? "; std::cin >> Periodic;
+	
+	int year, month, day;
+	year = stoi(Year);
+	month = stoi(Month);
+	day = stoi(Day);
+
+	Date EventDate;
+	EventDate.SetDate(day, month, year);
+	EventDate.PrintDate();
+
 
 	std::cout << "Enter Country name: "; std::cin >> Country; std::cout << " Enter Town name: "; std::cin >> Town; std::cout << " Enter Street name: "; std::cin >> Street; std::cout << " Enter number: "; std::cin >> Number;
 	Location EventLocation;
 	EventLocation.SetLocation(Country,Town,Street,Number);
 	EventLocation.PrintLocation();
 	
+
+	//Create Event Object
+	Event NewEvent;
+	
+
 }

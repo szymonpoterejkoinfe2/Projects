@@ -1,2 +1,6 @@
 ﻿  CalendarApp.cpp
-  CalendarApp.vcxproj -> C:\Users\Szymon\Desktop\FOCP\0d92ca9c-gr04-repo\CalendarApp\x64\Debug\CalendarApp.exe
+  Class.cpp
+  function.cpp
+C:\Users\Szymon\Desktop\ĆwiczeniaProgramowanie\Projects\CalendarApp\CalendarApp\function.cpp(127,7): warning C4101: "isPeriodic": lokalna zmienna, do której nie istnieje odwołanie
+  Generowanie kodu...
+  CalendarApp.vcxproj -> C:\Users\Szymon\Desktop\ĆwiczeniaProgramowanie\Projects\CalendarApp\x64\Debug\CalendarApp.exe

@@ -27,16 +27,19 @@ private:
 public:
     Date();
     void SetDate(const int day, const int month, const int year);
-    
+    void PrintDate();
 };
 
 class Event
 {
-private :
+private:
     std::string Event_Name;
-    Location *location;
-    Date *date;
+    Date* date;
+    Location* location;
     bool Repetable;
+public:
+    Event();
+    Event(const std::string eventName, Date* eventDate, Location* eventLocation, const bool repetableEvent);
 };
 
 

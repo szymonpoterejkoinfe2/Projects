@@ -27,6 +27,8 @@ void Location::PrintLocation()
 {
 	std::cout << Country << " " << Town << " " << Street << " " << Number;
 }
+
+
 Date::Date() :
 	Year(), Month(), Day() {}
 void Date::SetDate(const int day, const int month, const int year)
@@ -35,3 +37,14 @@ void Date::SetDate(const int day, const int month, const int year)
 	Month = month;
 	Year = year;
 }
+void Date::PrintDate()
+{
+	std::cout << Day << " " << Month << " " << Year;
+}
+
+Event::Event() :
+	Event_Name(nullptr), date(nullptr), location(nullptr),Repetable(nullptr) {}
+
+Event::Event(const std::string eventName, Date* eventDate, Location* eventLocation, const bool repetableEvent) : 
+	Event_Name(eventName), date(eventDate), location(eventLocation), Repetable(repetableEvent) {}
+
