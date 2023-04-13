@@ -3,6 +3,8 @@
 #define FUNCTION_H
 #include <string>
 #include <ctime>
+#include <vector>
+#include "Class.h"
 
 // Function which displays and manage main menu.
 void MainMenu();
@@ -17,6 +19,6 @@ void CheckCalendarMenu(bool &GoBack);
 bool ValidateInputYearData( const std::string &Year, bool &LoopBool);
 
 // Function which displays and manage event addition menu.
-void AddEventMenu(bool& LoopBool);
+void AddEventMenu(bool& GoBack,std::vector<Event> allEvents);
 
 #endif

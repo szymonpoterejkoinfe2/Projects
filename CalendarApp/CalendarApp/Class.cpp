@@ -56,7 +56,7 @@ void Event::PresentEvent()
 	date->PrintDate();
 	std::cout << std::endl;
 	location->PrintLocation();
-	std::cout<<std::endl;
+	//std::cout<<std::endl;
 
 };
 
