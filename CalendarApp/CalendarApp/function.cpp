@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-
+#include <vector>
 
 
 void MainMenu()
@@ -122,9 +122,12 @@ bool ValidateInputYearData( const std::string& Year, bool &LoopBool) {
 }
 
 void AddEventMenu(bool& LoopBool) {
+
+	std::vector<Event> AllEvents;
+
 	std::string Country, Town, Street, Number,EventName, Day, Month, Year;
-	char Periodic;
-	bool isPeriodic;
+	char PeriodicQuestion, LocationQuestion;
+	bool isPeriodic = false, haveLocation = false;
 
 	// Naming Event
 	std::cout << "Name your Event: ";
@@ -135,26 +138,72 @@ void AddEventMenu(bool& LoopBool) {
 
 
 	//Specifying Event Date
-	std::cout << "Enter event date year: "; std::cin >> Year; std::cout << " Enter event date month: "; std::cin >> Month; std::cout << " Enter event date day: "; std::cin >> Day; std::cout << " Is event periodic? "; std::cin >> Periodic;
+	std::cout << "Enter event date year: "; std::cin >> Year; std::cout << " Enter event date month: "; std::cin >> Month; std::cout << " Enter event date day: "; std::cin >> Day; std::cout << " Is event periodic? Enter y if YES; Enter n if NO: "; std::cin >> PeriodicQuestion;
 	
+	//Set isPeriodic Bool
+	if (PeriodicQuestion == 'y')
+	{
+		isPeriodic = true;
+	}
+	else if (PeriodicQuestion == 'n')
+	{
+		isPeriodic = false;
+	}
+
+	//Convert string to int
 	int year, month, day;
 	year = stoi(Year);
 	month = stoi(Month);
 	day = stoi(Day);
 
-	Date EventDate;
+	//Create EventDate Object
+	Date EventDate, D1,D2;
+
+	D1.SetDate(12,14,2003);
+	D2.SetDate(15, 01, 2007);
+
 	EventDate.SetDate(day, month, year);
-	EventDate.PrintDate();
+	//EventDate.PrintDate();
+
+	//Set haveLocation Bool
+	std::cout << " Does the event have location? Enter y if YES; Enter n if NO: "; std::cin >> LocationQuestion;
+
+	if (LocationQuestion == 'y')
+	{
+		haveLocation = true;
+	}
+	else if (LocationQuestion == 'n')
+	{
+		haveLocation = false;
+	}
 
 
-	std::cout << "Enter Country name: "; std::cin >> Country; std::cout << " Enter Town name: "; std::cin >> Town; std::cout << " Enter Street name: "; std::cin >> Street; std::cout << " Enter number: "; std::cin >> Number;
-	Location EventLocation;
-	EventLocation.SetLocation(Country,Town,Street,Number);
-	EventLocation.PrintLocation();
+
+	//Specifying Event Location
+	if (haveLocation == true)
+	{
+		std::cout << "Enter Country name: "; std::cin >> Country; std::cout << " Enter Town name: "; std::cin >> Town; std::cout << " Enter Street name: "; std::cin >> Street; std::cout << " Enter number: "; std::cin >> Number;
+		Location EventLocation;
+		EventLocation.SetLocation(Country, Town, Street, Number);
+
+		//Create Event Object
+		Event NewEvent(EventName, &EventDate, &EventLocation, isPeriodic);
+		NewEvent.PresentEvent();
+
+		AllEvents.push_back(NewEvent);
+	}
+	else
+	{
+		//Create Event Object
+		Event NewEvent(EventName, &EventDate, isPeriodic);
+		NewEvent.PresentEvent();
+		AllEvents.push_back(NewEvent);
+	}
 	
+	Event NewEvent1("IMprezaRodzinna", &D1, isPeriodic);
+	Event NewEvent2("IMprezaRodzinna2", &D2, isPeriodic);
 
-	//Create Event Object
-	Event NewEvent;
-	
+	AllEvents.push_back(NewEvent1);
+	AllEvents.push_back(NewEvent2);
 
 }

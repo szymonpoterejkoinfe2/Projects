@@ -38,8 +38,18 @@ private:
     Location* location;
     bool Repetable;
 public:
+    
+    //Empty Event Constructor
     Event();
-    Event(const std::string eventName, Date* eventDate, Location* eventLocation, const bool repetableEvent);
+
+    //No Location Event Constructor;
+    Event(std::string eventName, Date* eventDate, const bool repetableEvent);
+
+    //Full Event Constructor
+    Event( std::string eventName, Date* eventDate, Location* eventLocation, const bool repetableEvent);
+
+    //Printing Event Information.
+    void PresentEvent();
 };
 
 
