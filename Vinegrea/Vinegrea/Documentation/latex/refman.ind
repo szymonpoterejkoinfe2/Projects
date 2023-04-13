@@ -1,0 +1,107 @@
+\begin{theindex}
+
+  \item {action}
+    \subitem {function.cpp}, \hyperpage{8}
+    \subitem {function.h}, \hyperpage{19}
+
+  \indexspace
+
+  \item {calculate\_index\_of\_coincedence}
+    \subitem {function.cpp}, \hyperpage{9}
+    \subitem {function.h}, \hyperpage{20}
+  \item {count\_Letters}
+    \subitem {function.cpp}, \hyperpage{9, 10}
+    \subitem {function.h}, \hyperpage{21}
+  \item {create\_deque\_Sepparated\_letters}
+    \subitem {function.cpp}, \hyperpage{10}
+    \subitem {function.h}, \hyperpage{22}
+
+  \indexspace
+
+  \item {decrypt}
+    \subitem {function.cpp}, \hyperpage{11}
+    \subitem {function.h}, \hyperpage{23}
+
+  \indexspace
+
+  \item {find\_shift}
+    \subitem {function.cpp}, \hyperpage{13}
+    \subitem {function.h}, \hyperpage{24}
+  \item {findkeyLength}
+    \subitem {function.cpp}, \hyperpage{13}
+    \subitem {function.h}, \hyperpage{25}
+  \item {function.cpp}, \hyperpage{7}
+    \subitem {action}, \hyperpage{8}
+    \subitem {calculate\_index\_of\_coincedence}, \hyperpage{9}
+    \subitem {count\_Letters}, \hyperpage{9, 10}
+    \subitem {create\_deque\_Sepparated\_letters}, \hyperpage{10}
+    \subitem {decrypt}, \hyperpage{11}
+    \subitem {find\_shift}, \hyperpage{13}
+    \subitem {findkeyLength}, \hyperpage{13}
+    \subitem {is\_Alphabetic\_Character}, \hyperpage{15}
+    \subitem {min\_difference}, \hyperpage{15}
+    \subitem {print\_Instruction}, \hyperpage{16}
+    \subitem {Sum\_of\_shift}, \hyperpage{16}
+    \subitem {switches\_check}, \hyperpage{17}
+    \subitem {Valid\_file}, \hyperpage{18}
+  \item {function.h}, \hyperpage{18}
+    \subitem {action}, \hyperpage{19}
+    \subitem {calculate\_index\_of\_coincedence}, \hyperpage{20}
+    \subitem {count\_Letters}, \hyperpage{21}
+    \subitem {create\_deque\_Sepparated\_letters}, \hyperpage{22}
+    \subitem {decrypt}, \hyperpage{23}
+    \subitem {find\_shift}, \hyperpage{24}
+    \subitem {findkeyLength}, \hyperpage{25}
+    \subitem {FUNCTION\_H}, \hyperpage{19}
+    \subitem {is\_Alphabetic\_Character}, \hyperpage{26}
+    \subitem {min\_difference}, \hyperpage{27}
+    \subitem {print\_Instruction}, \hyperpage{27}
+    \subitem {Sum\_of\_shift}, \hyperpage{28}
+    \subitem {switches\_check}, \hyperpage{28}
+    \subitem {Valid\_file}, \hyperpage{29}
+  \item {FUNCTION\_H}
+    \subitem {function.h}, \hyperpage{19}
+
+  \indexspace
+
+  \item {is\_Alphabetic\_Character}
+    \subitem {function.cpp}, \hyperpage{15}
+    \subitem {function.h}, \hyperpage{26}
+
+  \indexspace
+
+  \item {main}
+    \subitem {main.cpp}, \hyperpage{31}
+  \item {main.cpp}, \hyperpage{30}
+    \subitem {main}, \hyperpage{31}
+  \item {min\_difference}
+    \subitem {function.cpp}, \hyperpage{15}
+    \subitem {function.h}, \hyperpage{27}
+
+  \indexspace
+
+  \item {print\_Instruction}
+    \subitem {function.cpp}, \hyperpage{16}
+    \subitem {function.h}, \hyperpage{27}
+
+  \indexspace
+
+  \item {shift\_value}, \hyperpage{5}
+    \subitem {Structshift}, \hyperpage{5}
+  \item {Structshift}
+    \subitem {shift\_value}, \hyperpage{5}
+  \item {structure.h}, \hyperpage{32}
+  \item {Sum\_of\_shift}
+    \subitem {function.cpp}, \hyperpage{16}
+    \subitem {function.h}, \hyperpage{28}
+  \item {switches\_check}
+    \subitem {function.cpp}, \hyperpage{17}
+    \subitem {function.h}, \hyperpage{28}
+
+  \indexspace
+
+  \item {Valid\_file}
+    \subitem {function.cpp}, \hyperpage{18}
+    \subitem {function.h}, \hyperpage{29}
+
+\end{theindex}

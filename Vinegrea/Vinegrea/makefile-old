@@ -1,0 +1,83 @@
+
+#############################
+# Generator plikow makefile #
+# Krzysztof Siminski, 2022  #
+#############################
+
+# STALE:
+kompilator=g++
+standard=-std=c++20
+
+optRelease=-O3
+optDebug=
+
+errors=-pedantic-errors
+
+release=
+debug=-g
+
+#rownoleglosc=-fopenmp
+rownoleglosc=
+
+release_folder=_release
+debug_folder=_debug
+
+#############################
+
+.PHONY : clean $(debug_folder) $(release_folder)
+
+# opcje uruchomienia projektu:
+
+release : $(release_folder) $(release_folder)/main
+	./$(release_folder)/main
+	./$(release_folder)/main -i wejscie -o wyjscie -w wzorzec -k klucz
+Vinegrea -i test1.txt -o test2.txt -w test3.txt -k test4.txt
+Vinegrea -i szyfr.txt -o test2.txt -w test3.txt -k test4.txt
+	./$(release_folder)/main -o wyjscie -w wzorzec -k klucz -i wejscie
+# Vinegrea -o test2 -w test3 -k test4 -i test1
+#niepoprawne:
+	./$(release_folder)/main -q wejscie -o wyjscie -w wzorzec -k klucz
+	./$(release_folder)/main -i wejscie -o wyjscie -w wzorzec 
+	./$(release_folder)/main -i wejscie -o wyjscie -w wzorzec -k klucz -w cos_jeszcze
+	./$(release_folder)/main -i wejscie -o wyjscie -w wzorzec klucz -k 
+	
+	
+	
+	
+
+debug : $(debug_folder) $(debug_folder)/main
+	valgrind --leak-check=yes ./$(debug_folder)/main
+
+# utworzenie folderow:
+
+$(release_folder) : 
+	mkdir -p $(release_folder)
+$(debug_folder) : 
+	mkdir -p $(debug_folder)
+
+# kompilacja zrodel:
+
+$(release_folder)/function.o : function.cpp
+	$(kompilator) $(standard) $(release) $(optRelease) $(rownoleglosc) $(errors) -c -o $@ $^
+$(debug_folder)/function.o : function.cpp
+	$(kompilator) $(standard) $(debug) $(optyDebug) $(rownoleglosc) $(errors) -c -o $@ $^
+$(release_folder)/main.o : main.cpp
+	$(kompilator) $(standard) $(release) $(optRelease) $(rownoleglosc) $(errors) -c -o $@ $^
+$(debug_folder)/main.o : main.cpp
+	$(kompilator) $(standard) $(debug) $(optyDebug) $(rownoleglosc) $(errors) -c -o $@ $^
+
+# linkowanie:
+
+$(release_folder)/main : $(release_folder)/main.o $(release_folder)/function.o 
+	$(kompilator) $(standard) $(release) $(optRelease) $(rownoleglosc) $(errors) -o $@ $^
+
+$(debug_folder)/main : $(debug_folder)/main.o $(debug_folder)/function.o 
+	$(kompilator) $(standard) $(debug) $(optDebug) $(rownoleglosc) $(errors) -o $@ $^
+
+# usuniecie plikow skompilowanych:
+
+clean : 
+	if [ -d $(debug_folder)      ] ; then rm -r $(debug_folder)   ; fi
+	if [ -d $(release_folder)    ] ; then rm -r $(release_folder) ; fi;
+
+

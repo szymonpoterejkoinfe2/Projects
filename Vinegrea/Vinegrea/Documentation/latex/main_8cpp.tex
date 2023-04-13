@@ -1,0 +1,97 @@
+\hypertarget{main_8cpp}{}\doxysection{main.\+cpp File Reference}
+\label{main_8cpp}\index{main.cpp@{main.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$deque$>$}\newline
+{\ttfamily \#include \char`\"{}function.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}structure.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_ac0afc62b75355e9abb5123fd4649698a}{main}} (int number, char $\ast$params\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_ac0afc62b75355e9abb5123fd4649698a}\label{main_8cpp_ac0afc62b75355e9abb5123fd4649698a}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{number,  }\item[{char $\ast$}]{params\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ std::vector<std::string>\ Input\_Switches,\ Input\_Files;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{int}\ Can\_Decrypt\_Files\ =\ 0,\ keylength\ =\ 0;}
+\DoxyCodeLine{00017\ \ \ \ \ std::vector<shift\_value>\ Shift\_and\_Value;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ NUMBER\_OF\_FILES\ \{\ 4\ \};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ Can\_Decrypt\_Switches\ =\ \textcolor{keyword}{false},\ Switch\_case\_One\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00020\ \ \ \ \ std::string\ encrypted\_text\_file\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ pattern\_text\_file\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00022\ \ \ \ \ std::string\ key\_file\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00023\ \ \ \ \ std::string\ output\_file\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ number;\ i++)}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ \%\ 2\ ==\ 1)}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ Input\_Switches.push\_back(params[i]);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ Input\_Files.push\_back(params[i]);}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{function_8cpp_a8f61746575175eae40e53120913f4428}{action}}(number,Can\_Decrypt\_Files,params,Input\_Switches,Input\_Files,Switch\_case\_One,Can\_Decrypt\_Switches);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (Switch\_case\_One\ \&\&\ Input\_Switches.size()\ >=\ NUMBER\_OF\_FILES)}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ encrypted\_text\_file\ =\ Input\_Files[0];}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ pattern\_text\_file\ =\ Input\_Files[2];}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ key\_file\ =\ Input\_Files[3];}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ output\_file\ =\ Input\_Files[1];}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (Input\_Switches.size()\ >=\ NUMBER\_OF\_FILES)}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ encrypted\_text\_file\ =\ Input\_Files[3];}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ pattern\_text\_file\ =\ Input\_Files[1];}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ key\_file\ =\ Input\_Files[2];}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ output\_file\ =\ Input\_Files[0];}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}(Can\_Decrypt\_Files\ ==\ NUMBER\_OF\_FILES\ \&\&\ Can\_Decrypt\_Switches)}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}All\ files\ were\ found!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Decryption\ in\ progress..."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ file(encrypted\_text\_file);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ keylength\ =\ \mbox{\hyperlink{function_8cpp_ac27501986483af41b7a9a4778b014ddd}{findkeyLength}}(encrypted\_text\_file);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::deque<double>\ letters\_Counted\ =\ \mbox{\hyperlink{function_8cpp_a9468400fd16f30b6e269aa991e7d530f}{count\_Letters}}(pattern\_text\_file);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::deque<std::deque<char>\ >\ letters\_separated\_deques\ =\ \mbox{\hyperlink{function_8cpp_a7d09b8db21b85d7ed64c8120f6016710}{create\_deque\_Sepparated\_letters}}(encrypted\_text\_file,\ keylength);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ letters\_separated\_deques.size();\ i++)}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::deque<double>\ averages\_spacing\ =\ \mbox{\hyperlink{function_8cpp_a9468400fd16f30b6e269aa991e7d530f}{count\_Letters}}(letters\_separated\_deques[i]);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Shift\_and\_Value.push\_back(\mbox{\hyperlink{function_8cpp_a2b4c54dbe139ce580730a81485ccf790}{find\_shift}}(letters\_Counted,\ averages\_spacing));}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{function_8cpp_a41fb6c4cbfde29288cddd740d779e3c1}{decrypt}}(output\_file,\ Shift\_and\_Value,\ encrypted\_text\_file,\ key\_file);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00080\ \}}
+
+\end{DoxyCode}

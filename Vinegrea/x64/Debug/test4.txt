@@ -1,0 +1,1 @@
+Shift is equal: 3 4 17 19 24 20  Key size is equal: 6

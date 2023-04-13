@@ -1,0 +1,796 @@
+\hypertarget{function_8cpp}{}\doxysection{function.\+cpp File Reference}
+\label{function_8cpp}\index{function.cpp@{function.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$deque$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include \char`\"{}function.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}structure.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{function_8cpp_a8f61746575175eae40e53120913f4428}{action}} (int \&number, int \&can\+\_\+decrypt\+\_\+files, char $\ast$params\mbox{[}$\,$\mbox{]}, const std\+::vector$<$ std\+::string $>$ \&input\+Sw, const std\+::vector$<$ std\+::string $>$ \&input\+Fi, bool \&switch\+\_\+case\+\_\+one, bool \&can\+\_\+decrypt\+\_\+switches)
+\begin{DoxyCompactList}\small\item\em A function that is responsible for checking the correctness of program input data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{function_8cpp_aeb4153bba9f3643f592165e491fd3ae8}{print\+\_\+\+Instruction}} ()
+\begin{DoxyCompactList}\small\item\em A function that prints short program instructions. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{function_8cpp_a7a0d72263ad514a73fb4cabec806c8f2}{switches\+\_\+check}} (const std\+::vector$<$ std\+::string $>$ \&input\+\_\+value, bool \&Option\+\_\+\+One)
+\begin{DoxyCompactList}\small\item\em A function that checks the correctness of program input switches. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{function_8cpp_ae9bd78948f8fe6f0120beb8757943b61}{Valid\+\_\+file}} (const std\+::string \&File\+\_\+\+Name)
+\begin{DoxyCompactList}\small\item\em A function that checks the correctness of input file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{function_8cpp_aa96732a435b685426abf4110a1162791}{is\+\_\+\+Alphabetic\+\_\+\+Character}} (char \&letter)
+\begin{DoxyCompactList}\small\item\em A function that dtermines if input characte is alphabetic. \end{DoxyCompactList}\item 
+std\+::deque$<$ double $>$ \mbox{\hyperlink{function_8cpp_a9468400fd16f30b6e269aa991e7d530f}{count\+\_\+\+Letters}} (const std\+::string \&file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em A function that calculates the average of the number of each letter in the input file. \end{DoxyCompactList}\item 
+std\+::deque$<$ std\+::deque$<$ char $>$ $>$ \mbox{\hyperlink{function_8cpp_a7d09b8db21b85d7ed64c8120f6016710}{create\+\_\+deque\+\_\+\+Sepparated\+\_\+letters}} (const std\+::string \&file\+\_\+name, const int \&spacing)
+\begin{DoxyCompactList}\small\item\em A function that generates deques containing letters from the input file. \end{DoxyCompactList}\item 
+std\+::deque$<$ double $>$ \mbox{\hyperlink{function_8cpp_a4a6f4d84835f4bc8a04adbcb907b8521}{count\+\_\+\+Letters}} (std\+::deque$<$ char $>$ \&letters)
+\begin{DoxyCompactList}\small\item\em A function that calculates the average of the number of each letter in the input deque. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structshift__value}{shift\+\_\+value}} \mbox{\hyperlink{function_8cpp_a2b4c54dbe139ce580730a81485ccf790}{find\+\_\+shift}} (std\+::deque$<$ double $>$ \&sample\+\_\+average, std\+::deque$<$ double $>$ \&decrypted\+\_\+average)
+\begin{DoxyCompactList}\small\item\em A function that looks for an shift between a single letter in the encoded file and a letter in the plaintext file using their averages. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{function_8cpp_af89ac8cc5b5f37af744efbc24a0ca4e0}{Sum\+\_\+of\+\_\+shift}} (std\+::vector$<$ double $>$ \&vector\+\_\+\+Of\+\_\+averages)
+\begin{DoxyCompactList}\small\item\em A functionthat sums all values from the input vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structshift__value}{shift\+\_\+value}} \mbox{\hyperlink{function_8cpp_a158e0adeb0404eae36c738a64c6e2820}{min\+\_\+difference}} (const std\+::vector$<$ double $>$ \&vector\+\_\+\+Of\+\_\+averages)
+\begin{DoxyCompactList}\small\item\em A function that finds the smallest value in the input vector. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{function_8cpp_ac27501986483af41b7a9a4778b014ddd}{findkey\+Length}} (const std\+::string \&file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em A function that determines the most likely length of the key used to encrypt the message. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{function_8cpp_a087630eae89a4aa67fdd3e9f8674bf49}{calculate\+\_\+index\+\_\+of\+\_\+coincedence}} (std\+::deque$<$ double $>$ input\+\_\+averages)
+\begin{DoxyCompactList}\small\item\em A function hat calculate index of coincedence of the input deque. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{function_8cpp_a41fb6c4cbfde29288cddd740d779e3c1}{decrypt}} (std\+::string \&Return\+\_\+\+File\+\_\+\+Name, std\+::vector$<$ \mbox{\hyperlink{structshift__value}{shift\+\_\+value}} $>$ \&key, std\+::string \&Input\+\_\+\+File\+\_\+name, std\+::string \&Key\+\_\+file)
+\begin{DoxyCompactList}\small\item\em A function that decrypts an encrypted message based on a previously found shift. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{function_8cpp_a8f61746575175eae40e53120913f4428}\label{function_8cpp_a8f61746575175eae40e53120913f4428}} 
+\index{function.cpp@{function.cpp}!action@{action}}
+\index{action@{action}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{action()}{action()}}
+{\footnotesize\ttfamily void action (\begin{DoxyParamCaption}\item[{int \&}]{number,  }\item[{int \&}]{can\+\_\+decrypt\+\_\+files,  }\item[{char $\ast$}]{params\mbox{[}$\,$\mbox{]},  }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{input\+Sw,  }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{input\+Fi,  }\item[{bool \&}]{switch\+\_\+case\+\_\+one,  }\item[{bool \&}]{can\+\_\+decrypt\+\_\+switches }\end{DoxyParamCaption})}
+
+
+
+A function that is responsible for checking the correctness of program input data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & holds number of input parameters \\
+\hline
+{\em can\+\_\+decrypt\+\_\+files} & holds number of correct files on which the program operates. \\
+\hline
+{\em params} & holds input parameters \\
+\hline
+{\em input\+Sw} & vector of input switches \\
+\hline
+{\em input\+Fi} & vector of input and output files \\
+\hline
+{\em switch\+\_\+case\+\_\+one} & bool confirming that the first combination of input switches is met \\
+\hline
+{\em can\+\_\+decrypt\+\_\+switches} & bool which confirms that all input switches are valid. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Function does not return any value 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ Printiong\ short\ manual\ of\ program}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{if}\ (number\ ==\ 1)}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{function_8cpp_aeb4153bba9f3643f592165e491fd3ae8}{print\_Instruction}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ when\ all\ inputs\ entered}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (number\ ==\ 9)}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Number\ of\ parameters\ is\ OK"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ can\_decrypt\_switches\ =\ \mbox{\hyperlink{function_8cpp_a7a0d72263ad514a73fb4cabec806c8f2}{switches\_check}}(inputSw,\ switch\_case\_one);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ inputFi.size();\ i++)}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ can\_decrypt\_files\ +=\ \mbox{\hyperlink{function_8cpp_ae9bd78948f8fe6f0120beb8757943b61}{Valid\_file}}(inputFi[i]);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ Wrong\ number\ of\ inputs}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Wrong\ number\ of\ input\ parameters!"{}};}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_a087630eae89a4aa67fdd3e9f8674bf49}\label{function_8cpp_a087630eae89a4aa67fdd3e9f8674bf49}} 
+\index{function.cpp@{function.cpp}!calculate\_index\_of\_coincedence@{calculate\_index\_of\_coincedence}}
+\index{calculate\_index\_of\_coincedence@{calculate\_index\_of\_coincedence}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{calculate\_index\_of\_coincedence()}{calculate\_index\_of\_coincedence()}}
+{\footnotesize\ttfamily double calculate\+\_\+index\+\_\+of\+\_\+coincedence (\begin{DoxyParamCaption}\item[{std\+::deque$<$ double $>$}]{input\+\_\+averages }\end{DoxyParamCaption})}
+
+
+
+A function hat calculate index of coincedence of the input deque. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+averages} & deque containing average occurance of every alphabetic character. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Function returns index of coincede of input deque. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00386\ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keywordtype}{double}\ index\ =\ 0;}
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ input\_averages.size();\ i++)}
+\DoxyCodeLine{00389\ \ \ \ \ \{}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ index\ +=\ ((input\_averages[i]\ *\ input\_averages[i]));}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \}}
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{keywordflow}{return}\ index;}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_a9468400fd16f30b6e269aa991e7d530f}\label{function_8cpp_a9468400fd16f30b6e269aa991e7d530f}} 
+\index{function.cpp@{function.cpp}!count\_Letters@{count\_Letters}}
+\index{count\_Letters@{count\_Letters}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{count\_Letters()}{count\_Letters()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::deque$<$ double $>$ count\+\_\+\+Letters (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+A function that calculates the average of the number of each letter in the input file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+\+Name} & name of the file containing the text whose average number of letters will be counted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The function returns a deque containing the average of the occurrences. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ SIZE\ =\ \textcolor{charliteral}{'z'}\ -\/\ \textcolor{charliteral}{'a'}\ +\ 1;}
+\DoxyCodeLine{00147\ \ \ \ \ std::deque<double>\ Letters\_Counted;}
+\DoxyCodeLine{00148\ \ \ \ \ std::ifstream\ file(file\_name);}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{int}\ file\_size\ =\ 0;}
+\DoxyCodeLine{00150\ \ \ \ \ Letters\_Counted.assign(26,0);}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{bool}\ exists\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (file)}
+\DoxyCodeLine{00154\ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ letterread\ =\ \textcolor{charliteral}{'\ '},\ letter\ =\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (file\ >>\ letterread)}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ letter\ =\ tolower(letterread);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ exists\ =\ \mbox{\hyperlink{function_8cpp_aa96732a435b685426abf4110a1162791}{is\_Alphabetic\_Character}}(letter);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (exists)}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_size++;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Letters\_Counted[letter\ -\/\ \textcolor{charliteral}{'a'}]++;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ Letters\_Counted.size();\ i++)}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ Letters\_Counted[i]\ =\ Letters\_Counted[i]\ /\ file\_size;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{return}\ Letters\_Counted;}
+\DoxyCodeLine{00175\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_a4a6f4d84835f4bc8a04adbcb907b8521}\label{function_8cpp_a4a6f4d84835f4bc8a04adbcb907b8521}} 
+\index{function.cpp@{function.cpp}!count\_Letters@{count\_Letters}}
+\index{count\_Letters@{count\_Letters}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{count\_Letters()}{count\_Letters()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::deque$<$ double $>$ count\+\_\+\+Letters (\begin{DoxyParamCaption}\item[{std\+::deque$<$ char $>$ \&}]{letters }\end{DoxyParamCaption})}
+
+
+
+A function that calculates the average of the number of each letter in the input deque. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em letters} & name of the deque containing the encrypted message which letter average we want to calculate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The function returns a deque containing the average of the occurrences. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00223\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ std::deque<double>\ Letters\_Counted;}
+\DoxyCodeLine{00225\ \ \ \ \ Letters\_Counted.assign(26,\ 0);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ letters.size();\ i++)}
+\DoxyCodeLine{00228\ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ Letters\_Counted[letters[i]\ -\/\ \textcolor{charliteral}{'a'}]++;}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ Letters\_Counted.size();\ i++)}
+\DoxyCodeLine{00232\ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ Letters\_Counted[i]\ =\ Letters\_Counted[i]\ /\ letters.size();}
+\DoxyCodeLine{00234\ \ \ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{return}\ Letters\_Counted;}
+\DoxyCodeLine{00237\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_a7d09b8db21b85d7ed64c8120f6016710}\label{function_8cpp_a7d09b8db21b85d7ed64c8120f6016710}} 
+\index{function.cpp@{function.cpp}!create\_deque\_Sepparated\_letters@{create\_deque\_Sepparated\_letters}}
+\index{create\_deque\_Sepparated\_letters@{create\_deque\_Sepparated\_letters}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{create\_deque\_Sepparated\_letters()}{create\_deque\_Sepparated\_letters()}}
+{\footnotesize\ttfamily std\+::deque$<$ std\+::deque$<$ char $>$ $>$ create\+\_\+deque\+\_\+\+Sepparated\+\_\+letters (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name,  }\item[{const int \&}]{spacing }\end{DoxyParamCaption})}
+
+
+
+A function that generates deques containing letters from the input file. 
+
+these letters are divided by spaces of length n 
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+\+Name} & name of the file containing the text from which characters will be taken \\
+\hline
+{\em spacing} & is the value which represents te leng of spaces between letters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The function returns a deque containing deques with separated characters. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00178\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ std::ifstream\ file(file\_name);}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{bool}\ exists\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00181\ \ \ \ \ std::deque<char>\ letters\_separated;}
+\DoxyCodeLine{00182\ \ \ \ \ std::deque<std::deque<char>\ >\ letters\_separated\_deques;}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{if}\ (file)}
+\DoxyCodeLine{00185\ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ letterread\ =\ \textcolor{charliteral}{'\ '},\ letter\ =\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (file\ >>\ letterread)}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ letter\ =\ tolower(letterread);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ exists\ =\ \mbox{\hyperlink{function_8cpp_aa96732a435b685426abf4110a1162791}{is\_Alphabetic\_Character}}(letter);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (exists)}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ letters\_separated.push\_back(letter);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ spacing;\ j++)}
+\DoxyCodeLine{00201\ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ std::deque<char>\ separated\_chars;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ letters\_separated.size();\ i\ +=\ spacing)}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ separated\_chars.push\_back(letters\_separated[i]);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \ \ \ \ }
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ letters\_separated\_deques.push\_back(separated\_chars);}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ letters\_separated.pop\_front();}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordflow}{return}\ letters\_separated\_deques;}
+\DoxyCodeLine{00220\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_a41fb6c4cbfde29288cddd740d779e3c1}\label{function_8cpp_a41fb6c4cbfde29288cddd740d779e3c1}} 
+\index{function.cpp@{function.cpp}!decrypt@{decrypt}}
+\index{decrypt@{decrypt}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{decrypt()}{decrypt()}}
+{\footnotesize\ttfamily void decrypt (\begin{DoxyParamCaption}\item[{std\+::string \&}]{Return\+\_\+\+File\+\_\+\+Name,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structshift__value}{shift\+\_\+value}} $>$ \&}]{key,  }\item[{std\+::string \&}]{Input\+\_\+\+File\+\_\+name,  }\item[{std\+::string \&}]{Key\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+A function that decrypts an encrypted message based on a previously found shift. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Return\+\_\+\+File\+\_\+\+Name} & name of the file where the decrypted message is to be saved \\
+\hline
+{\em key} & vector with strict shift containing shift value of every key character. \\
+\hline
+{\em Input\+\_\+\+File\+\_\+name} & the name of the file we want to decrypt. \\
+\hline
+{\em Key\+\_\+file} & file where the key to decrypt the message is to be saved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Function does not return any value 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00398\ \{}
+\DoxyCodeLine{00399\ \ \ \ \ std::ifstream\ input\_file(Input\_File\_name);}
+\DoxyCodeLine{00400\ \ \ \ \ std::ofstream\ output\_file(Return\_File\_Name);}
+\DoxyCodeLine{00401\ \ \ \ \ std::ofstream\ key\_file(Key\_file);}
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ sta\ =\ 1;}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordtype}{int}\ shift\ =\ 0,incrementer\ =\ 0;}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \ \ \ \ \textcolor{keywordflow}{if}\ (input\_file\ \&\&\ output\_file)}
+\DoxyCodeLine{00407\ \ \ \ \ \{}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ std::string\ line\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ letter\ =\ \textcolor{charliteral}{'\ '},\ helper\ =\textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(input\_file,\ line,\ \textcolor{charliteral}{'\(\backslash\)0'}))\ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ exists\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ incrementer\ =\ 0;}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ line.size();\ i++)\ \{}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ letter\ =\ tolower(line[i]);}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exists\ =\ \mbox{\hyperlink{function_8cpp_aa96732a435b685426abf4110a1162791}{is\_Alphabetic\_Character}}(letter);}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (exists)}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ shift\ =\ key[incrementer\ \%\ key.size()].Structshift;}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{int}(letter\ -\/\ shift)\ <\ \textcolor{keywordtype}{int}(\textcolor{charliteral}{'a'}))}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ helper\ =\ char(\textcolor{keywordtype}{int}(\textcolor{charliteral}{'z'}\ -\/\ (shift\ -\/\ (letter\ -\/\ \textcolor{charliteral}{'a'})\ -\/\ sta)));}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ helper\ =\ char(\textcolor{keywordtype}{int}(letter\ -\/\ shift));}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\_file\ <<\ helper;}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ incrementer++;}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\_file\ <<\ letter;}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Decryption\ successful!\ Check\ file:\ "{}}\ <<\ Return\_File\_Name\ <<\ \textcolor{stringliteral}{"{}\ to\ see\ decrypted\ text\ and\ file:\ "{}}\ <<Key\_file\ <<\ \textcolor{stringliteral}{"{}\ to\ see\ shift."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ key\_file\ <<\ \textcolor{stringliteral}{"{}Shift\ is\ equal:\ "{}};}
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ key.size();\ i++)}
+\DoxyCodeLine{00447\ \ \ \ \ \{}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ key\_file\ <<\ key[i].Structshift\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \ \ \ \ key\_file\ <<\ \textcolor{stringliteral}{"{}\ Key\ size\ is\ equal:\ "{}}\ <<\ key.size();}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ input\_file.close();}
+\DoxyCodeLine{00455\ \ \ \ \ output\_file.close();}
+\DoxyCodeLine{00456\ \ \ \ \ key\_file.close();}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_a2b4c54dbe139ce580730a81485ccf790}\label{function_8cpp_a2b4c54dbe139ce580730a81485ccf790}} 
+\index{function.cpp@{function.cpp}!find\_shift@{find\_shift}}
+\index{find\_shift@{find\_shift}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{find\_shift()}{find\_shift()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structshift__value}{shift\+\_\+value}} find\+\_\+shift (\begin{DoxyParamCaption}\item[{std\+::deque$<$ double $>$ \&}]{sample\+\_\+average,  }\item[{std\+::deque$<$ double $>$ \&}]{decrypted\+\_\+average }\end{DoxyParamCaption})}
+
+
+
+A function that looks for an shift between a single letter in the encoded file and a letter in the plaintext file using their averages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sample\+\_\+average} & deque cantaining average of the occurrences of sample file. \\
+\hline
+{\em decrypted\+\_\+average} & deque cantaining average of the occurrences of decrypted file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The function returns an int that corresponds to the shift of the encrypted message 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00240\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ cycles\ =\ sample\_average.size();}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordtype}{int}\ \ step\ =\ 0;}
+\DoxyCodeLine{00243\ \ \ \ \ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{double}\ suma\_z\_roznic\_pomiedzy\_2\_dequami\ =\ 0;}
+\DoxyCodeLine{00245\ \ \ \ \ std::vector<double>\ sumy;}
+\DoxyCodeLine{00246\ \ \ \ \ \mbox{\hyperlink{structshift__value}{shift\_value}}\ shift\_min;}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ }
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordflow}{while}\ (step\ <\ cycles)}
+\DoxyCodeLine{00252\ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ std::vector<double>\ WektorRoznic;}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ sample\_average.size();\ i++)}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ absolute\_value\ =\ fabs(decrypted\_average[i]\ -\/\ sample\_average[i]);}
+\DoxyCodeLine{00260\ \ \ \ \ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ WektorRoznic.push\_back(absolute\_value);}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ holder\ =\ 0;}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ holder\ =\ sample\_average.back();}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ sample\_average.pop\_back();}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ sample\_average.push\_front(holder);}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ suma\_z\_roznic\_pomiedzy\_2\_dequami\ =\ \mbox{\hyperlink{function_8cpp_af89ac8cc5b5f37af744efbc24a0ca4e0}{Sum\_of\_shift}}(WektorRoznic);}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ sumy.push\_back(suma\_z\_roznic\_pomiedzy\_2\_dequami);}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ step++;}
+\DoxyCodeLine{00274\ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ }
+\DoxyCodeLine{00276\ \ \ \ \ shift\_min\ =\ \mbox{\hyperlink{function_8cpp_a158e0adeb0404eae36c738a64c6e2820}{min\_difference}}(sumy);}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordflow}{return}\ shift\_min;}
+\DoxyCodeLine{00279\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_ac27501986483af41b7a9a4778b014ddd}\label{function_8cpp_ac27501986483af41b7a9a4778b014ddd}} 
+\index{function.cpp@{function.cpp}!findkeyLength@{findkeyLength}}
+\index{findkeyLength@{findkeyLength}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{findkeyLength()}{findkeyLength()}}
+{\footnotesize\ttfamily int findkey\+Length (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+A function that determines the most likely length of the key used to encrypt the message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & name of the file containing the encrypted message whose key length we are looking for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the function returns an int which is the most likely length of the searched key. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00314\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ std::ifstream\ file(file\_name);}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordtype}{int}\ file\_size\ =\ 0;}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keywordtype}{char}\ letterread\ =\ \textcolor{charliteral}{'\ '},\ letter\ =\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00318\ \ \ \ \ std::deque<std::deque<double>>\ coincedence\_indexes;}
+\DoxyCodeLine{00319\ \ \ \ \ std::deque<double>\ coincedence\_indexes\_of\_spacing\_i;}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ proportion\ =\ 0.40;}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keywordflow}{while}\ (file\ >>\ letterread)}
+\DoxyCodeLine{00323\ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ letter\ =\ tolower(letterread);}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ exists\ =\ \mbox{\hyperlink{function_8cpp_aa96732a435b685426abf4110a1162791}{is\_Alphabetic\_Character}}(letter);}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (exists)}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ file\_size++;}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00331\ \ \ \ \ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ }
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ (file\_size\ /\ 2)\ +\ 1;\ i++)}
+\DoxyCodeLine{00337\ \ \ \ \ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ std::deque<std::deque<char>>\ letters\_separated\ =\ \mbox{\hyperlink{function_8cpp_a7d09b8db21b85d7ed64c8120f6016710}{create\_deque\_Sepparated\_letters}}(file\_name,\ i);}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ std::deque<std::deque<double>>\ averages\_counted;}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ letters\_separated.size();\ j++)}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ averages\_counted.push\_back(\mbox{\hyperlink{function_8cpp_a9468400fd16f30b6e269aa991e7d530f}{count\_Letters}}(letters\_separated[j]));}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ average\_of\_index\ =\ 0;}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ averages\_counted.size();\ k++)}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ average\_of\_index\ +=\ \mbox{\hyperlink{function_8cpp_a087630eae89a4aa67fdd3e9f8674bf49}{calculate\_index\_of\_coincedence}}(averages\_counted[k]);}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ average\_of\_index\ =\ (average\_of\_index\ /\ averages\_counted.size());}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ coincedence\_indexes\_of\_spacing\_i.push\_back(average\_of\_index);}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coincedence\_indexes\_of\_spacing\_i.size()\ >\ 2)}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 1;\ k\ <\ coincedence\_indexes\_of\_spacing\_i.size();\ k++)}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ compare\ =\ (coincedence\_indexes\_of\_spacing\_i[k\ -\/\ 1]\ +=\ (coincedence\_indexes\_of\_spacing\_i[k\ -\/\ 1]\ *\ proportion));}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (compare\ <\ coincedence\_indexes\_of\_spacing\_i[k])}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ key\ =\ k\ +\ 1;}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::cout\ <<"{}Key:\ "{}<<\ key\ <<\ std::endl;}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ key;}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ \}}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{comment}{/*for\ (int\ k\ =\ 0;\ k\ <\ coincedence\_indexes\_of\_spacing\_i.size();\ k++) }}
+\DoxyCodeLine{00377\ \textcolor{comment}{\ \ \ \ \{ }}
+\DoxyCodeLine{00378\ \textcolor{comment}{\ \ \ \ \ \ \ \ std::cout\ <<\ coincedence\_indexes\_of\_spacing\_i[k]\ <<\ "{}\ "{}; }}
+\DoxyCodeLine{00379\ \textcolor{comment}{\ \ \ \ \} }}
+\DoxyCodeLine{00380\ \textcolor{comment}{\ \ \ \ std::cout\ <<\ std::endl;*/}}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{comment}{//std::cout\ <<\ "{}Key:\ 1"{}\ <<\ std::endl;}}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00383\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_aa96732a435b685426abf4110a1162791}\label{function_8cpp_aa96732a435b685426abf4110a1162791}} 
+\index{function.cpp@{function.cpp}!is\_Alphabetic\_Character@{is\_Alphabetic\_Character}}
+\index{is\_Alphabetic\_Character@{is\_Alphabetic\_Character}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{is\_Alphabetic\_Character()}{is\_Alphabetic\_Character()}}
+{\footnotesize\ttfamily bool is\+\_\+\+Alphabetic\+\_\+\+Character (\begin{DoxyParamCaption}\item[{char \&}]{letter }\end{DoxyParamCaption})}
+
+
+
+A function that dtermines if input characte is alphabetic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em letter} & character we evaluate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if input character is alphabetic 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00135\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{char}\ allowed\_Letters[]\ =\ \{\ \textcolor{charliteral}{'a'},\textcolor{charliteral}{'b'},\textcolor{charliteral}{'c'},\textcolor{charliteral}{'d'},\textcolor{charliteral}{'e'},\textcolor{charliteral}{'f'},\textcolor{charliteral}{'g'},\textcolor{charliteral}{'h'},\textcolor{charliteral}{'i'},\textcolor{charliteral}{'j'},\textcolor{charliteral}{'k'},\textcolor{charliteral}{'l'},\textcolor{charliteral}{'m'},\textcolor{charliteral}{'n'},\textcolor{charliteral}{'o'},\textcolor{charliteral}{'p'},\textcolor{charliteral}{'q'},\textcolor{charliteral}{'r'},\textcolor{charliteral}{'s'},\textcolor{charliteral}{'t'},\textcolor{charliteral}{'u'},\textcolor{charliteral}{'v'},\textcolor{charliteral}{'w'},\textcolor{charliteral}{'x'},\textcolor{charliteral}{'y'},\textcolor{charliteral}{'z'}\ \};}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{char}\ letterevaluated\ =\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{bool}\ exists\ =\ std::find(std::begin(allowed\_Letters),\ std::end(allowed\_Letters),\ letter)\ !=\ std::end(allowed\_Letters);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ exists;}
+\DoxyCodeLine{00142\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_a158e0adeb0404eae36c738a64c6e2820}\label{function_8cpp_a158e0adeb0404eae36c738a64c6e2820}} 
+\index{function.cpp@{function.cpp}!min\_difference@{min\_difference}}
+\index{min\_difference@{min\_difference}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{min\_difference()}{min\_difference()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structshift__value}{shift\+\_\+value}} min\+\_\+difference (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{vector\+\_\+\+Of\+\_\+averages }\end{DoxyParamCaption})}
+
+
+
+A function that finds the smallest value in the input vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector\+\_\+\+Of\+\_\+averages} & the vector in which we want to find the smallest value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Function return smallest value in vector 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00294\ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordtype}{double}\ comparing\_min\_value\ =\ 100;}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keywordtype}{int}\ shift\ =\ 0;}
+\DoxyCodeLine{00297\ \ \ \ \ \mbox{\hyperlink{structshift__value}{shift\_value}}\ p;}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ vector\_Of\_averages.size();\ i++)}
+\DoxyCodeLine{00300\ \ \ \ \ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vector\_Of\_averages[i]\ <\ comparing\_min\_value)}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ shift\ =\ i;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ comparing\_min\_value\ =\ vector\_Of\_averages[i];}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00306\ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ p.\mbox{\hyperlink{structshift__value_ad5a12476a8a54bac3b3099fa05acc2e2}{Structshift}}\ =\ shift;}
+\DoxyCodeLine{00308\ \ \ \ \ p.min\_value\ =\ comparing\_min\_value;}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordflow}{return}\ p;}
+\DoxyCodeLine{00310\ \ \ \ \ }
+\DoxyCodeLine{00311\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_aeb4153bba9f3643f592165e491fd3ae8}\label{function_8cpp_aeb4153bba9f3643f592165e491fd3ae8}} 
+\index{function.cpp@{function.cpp}!print\_Instruction@{print\_Instruction}}
+\index{print\_Instruction@{print\_Instruction}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{print\_Instruction()}{print\_Instruction()}}
+{\footnotesize\ttfamily void print\+\_\+\+Instruction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A function that prints short program instructions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Function} & does not require any parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Function does not return any value 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Program\ breaks\ a\ cyphertext\ encrypted\ with\ an\ unknown\ key\ with\ the\ Vigenere\ method."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00050\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ program\ elaborates\ the\ unknown\ key\ and\ decrypts\ the\ encrypted\ file.\(\backslash\)n\ The\ program\ is\ run\ in\ command\ line\ with\ switches:"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00051\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ -\/i\ input\ text\ file\ (cyphertext)\(\backslash\)n\ -\/w\ sample\ text\ in\ the\ same\ language\ as\ the\ cyphertext\ \(\backslash\)n\ -\/k\ output\ text\ file\ with\ the\ elaborated\ key\ \(\backslash\)n\ -\/o\ output\ text\ file\ (plainext)"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_af89ac8cc5b5f37af744efbc24a0ca4e0}\label{function_8cpp_af89ac8cc5b5f37af744efbc24a0ca4e0}} 
+\index{function.cpp@{function.cpp}!Sum\_of\_shift@{Sum\_of\_shift}}
+\index{Sum\_of\_shift@{Sum\_of\_shift}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{Sum\_of\_shift()}{Sum\_of\_shift()}}
+{\footnotesize\ttfamily double Sum\+\_\+of\+\_\+shift (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{vector\+\_\+\+Of\+\_\+averages }\end{DoxyParamCaption})}
+
+
+
+A functionthat sums all values from the input vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector\+\_\+\+Of\+\_\+averages} & the vector in which we want to sum all the values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Function return sum of vector 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00282\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordtype}{double}\ added\_avg\ =\ 0,\ final\_average\ =\ 0;}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ vector\_Of\_averages.size();\ i++)}
+\DoxyCodeLine{00286\ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ added\_avg\ +=\ vector\_Of\_averages[i];}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ \ \ \ \ final\_average\ =\ (added\_avg/vector\_Of\_averages.size());}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordflow}{return}\ final\_average;}
+\DoxyCodeLine{00291\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_a7a0d72263ad514a73fb4cabec806c8f2}\label{function_8cpp_a7a0d72263ad514a73fb4cabec806c8f2}} 
+\index{function.cpp@{function.cpp}!switches\_check@{switches\_check}}
+\index{switches\_check@{switches\_check}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{switches\_check()}{switches\_check()}}
+{\footnotesize\ttfamily bool switches\+\_\+check (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{input\+\_\+value,  }\item[{bool \&}]{Option\+\_\+\+One }\end{DoxyParamCaption})}
+
+
+
+A function that checks the correctness of program input switches. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+value} & vector of input switches, the correctness of which we check \\
+\hline
+{\em Option\+\_\+\+One} & bool evaluates whether we have encountered the first possibility of switches \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Function return true if all input switches are correct 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ std::string\ Possibility\_One[4]\ =\ \{\textcolor{stringliteral}{"{}-\/i"{}},\textcolor{stringliteral}{"{}-\/o"{}},\textcolor{stringliteral}{"{}-\/w"{}},\textcolor{stringliteral}{"{}-\/k"{}}\};}
+\DoxyCodeLine{00058\ \ \ \ \ std::string\ Possibility\_Two[4]\ =\ \{\textcolor{stringliteral}{"{}-\/o"{}},\textcolor{stringliteral}{"{}-\/w"{}},\textcolor{stringliteral}{"{}-\/k"{}},\textcolor{stringliteral}{"{}-\/i"{}}\};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ Return\_true\ =\ 0;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{if}\ (input\_value[0]\ ==\ \textcolor{stringliteral}{"{}-\/i"{}})}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ Return\_true\ +=\ 1;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ Option\_One\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ input\_value.size();\ i++)}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input\_value[i]\ !=\ Possibility\_One[i])}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Wrong\ switch:\ "{}}\ <<\ input\_value[i]\ <<\ std::endl;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Return\_true\ +=\ 1;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Return\_true\ ==\ 4)}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (input\_value[0]\ ==\ \textcolor{stringliteral}{"{}-\/o"{}})}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ Return\_true\ +=\ 1;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ input\_value.size();\ i++)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input\_value[i]\ !=\ Possibility\_Two[i])}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Wrong\ switch:\ "{}}\ <<\ input\_value[i]\ <<\ std::endl;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Return\_true\ +=\ 1;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Return\_true\ ==\ 4)}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Switch\ Error!\ you\ typed:\ "{}}\ <<\ input\_value[0]\ <<\ std::endl;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ input\_value.size();\ i++)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input\_value[i]\ !=\ Possibility\_One[i]\ ||\ input\_value[i]\ !=\ Possibility\_One[i])}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Switch\ Error!\ you\ typed:\ "{}}\ <<\ input\_value[i]\ <<\ std::endl;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8cpp_ae9bd78948f8fe6f0120beb8757943b61}\label{function_8cpp_ae9bd78948f8fe6f0120beb8757943b61}} 
+\index{function.cpp@{function.cpp}!Valid\_file@{Valid\_file}}
+\index{Valid\_file@{Valid\_file}!function.cpp@{function.cpp}}
+\doxysubsubsection{\texorpdfstring{Valid\_file()}{Valid\_file()}}
+{\footnotesize\ttfamily int Valid\+\_\+file (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{File\+\_\+\+Name }\end{DoxyParamCaption})}
+
+
+
+A function that checks the correctness of input file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em File\+\_\+\+Name} & the name of the file we are checking for correctness \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Function return 1 if input file exists if not then 0 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{int}\ cycle\_counter\ =\ 0;}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ std::fstream\ file(File\_Name);}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}File\ "{}}\ <<\ File\_Name\ <<\ \textcolor{stringliteral}{"{}\ can't\ be\ found!\ Check\ if\ name\ is\ proper\ and/or\ if\ file\ exists."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ cycle\_counter\ +=\ 1;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ cycle\_counter;}
+\DoxyCodeLine{00132\ \}}
+
+\end{DoxyCode}
