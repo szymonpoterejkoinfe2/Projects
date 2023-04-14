@@ -130,30 +130,44 @@ void AddEventMenu(bool& GoBack, std::vector<Event> allEvents) {
 
 	while (workCondition)
 	{
+	#pragma region Variables
 		std::string Country, Town, Street, Number, EventName, Day, Month, Year;
 		char PeriodicQuestion, LocationQuestion, AddMoreEventsQuestion;
 		bool isPeriodic = false, haveLocation = false;
+	#pragma endregion
 
 		// Naming Event
 		std::cout << "Name your Event: ";
 		std::cin.ignore(1, '\n');
 		getline(std::cin, EventName);
-
 		std::cin.clear();
 
+	#pragma region MakeDateObject
 
 		//Specifying Event Date
-		std::cout << "Enter event date year: "; std::cin >> Year; std::cout << " Enter event date month: "; std::cin >> Month; std::cout << " Enter event date day: "; std::cin >> Day; std::cout << " Is event periodic? Enter y if YES; Enter n if NO: "; std::cin >> PeriodicQuestion;
+		std::cout << "Enter event date year: "; std::cin >> Year; std::cout << " Enter event date month: "; std::cin >> Month; std::cout << " Enter event date day: "; std::cin >> Day; 
+
 
 		//Set isPeriodic Bool
-		if (PeriodicQuestion == 'y')
+		bool WaitingForPeriodicInput = true;
+		while (WaitingForPeriodicInput)// Continue to ask if input != n || != y
 		{
-			isPeriodic = true;
+			std::cout << " Is event periodic? Enter y if YES; Enter n if NO: "; std::cin >> PeriodicQuestion;
+			switch (PeriodicQuestion)
+			{
+			case 'n':
+				isPeriodic = false;
+				WaitingForPeriodicInput = false;
+				break;
+			case 'y':
+				isPeriodic = true;
+				WaitingForPeriodicInput = false;
+			default:
+				std::cout << "Wrong input! Try again"<<std::endl;
+				break;
+			}
 		}
-		else if (PeriodicQuestion == 'n')
-		{
-			isPeriodic = false;
-		}
+	
 
 		//Convert string to int
 		int year, month, day;
@@ -161,27 +175,39 @@ void AddEventMenu(bool& GoBack, std::vector<Event> allEvents) {
 		month = stoi(Month);
 		day = stoi(Day);
 
+
 		//Create EventDate Object
 		Date EventDate;
-
-
 		EventDate.SetDate(day, month, year);
-		//EventDate.PrintDate();
+#pragma endregion
+		
 
+	#pragma region MakeLocationObject
 		//Set haveLocation Bool
-		std::cout << " Does the event have location? Enter y if YES; Enter n if NO: "; std::cin >> LocationQuestion;
+		bool WaitingForLocationInput = true;
+		while (WaitingForLocationInput)// Continue to ask if input != n || != y
+		{
+			std::cout << " Does the event have location? Enter y if YES; Enter n if NO: "; std::cin >> LocationQuestion;
 
-		if (LocationQuestion == 'y')
-		{
-			haveLocation = true;
+			switch (LocationQuestion)
+			{
+			case 'n':
+				haveLocation = false;
+				WaitingForLocationInput = false;
+				break;
+			case 'y':
+				haveLocation = true;
+				WaitingForLocationInput = false;
+				break;
+			default:
+				std::cout << "Wrong input! Try Again"<<std::endl;
+				break;
+			}
 		}
-		else if (LocationQuestion == 'n')
-		{
-			haveLocation = false;
-		}
+		
 
 		//Specifying Event Location
-		if (haveLocation == true)
+		if (haveLocation)
 		{
 			std::cout << "Enter Country name: "; std::cin >> Country; std::cout << " Enter Town name: "; std::cin >> Town; std::cout << " Enter Street name: "; std::cin >> Street; std::cout << " Enter number: "; std::cin >> Number;
 			Location EventLocation;
@@ -199,17 +225,28 @@ void AddEventMenu(bool& GoBack, std::vector<Event> allEvents) {
 			Event NewEvent(EventName, &EventDate, &EventLocation, isPeriodic);
 			allEvents.push_back(NewEvent);
 		}
+#pragma endregion
 
 		//Add Next Event
-		std::cout << " Do you want to Add More Events? Enter y if YES; Enter n if NO: "; std::cin >> AddMoreEventsQuestion;
-		if (AddMoreEventsQuestion == 'y')
+		bool WaitingForAddMorEventsInput = true;
+		while (WaitingForAddMorEventsInput) // Continue to ask if input != n || != y
 		{
-			workCondition = true;
-		}
-		else if (AddMoreEventsQuestion == 'n')
-		{
-			
-			workCondition = false;
+			std::cout << " Do you want to Add More Events? Enter y if YES; Enter n if NO: "; std::cin >> AddMoreEventsQuestion;
+
+			switch (AddMoreEventsQuestion)
+			{case 'n':
+				WaitingForAddMorEventsInput = false;
+				workCondition = false;
+				break;
+			case 'y':
+				WaitingForAddMorEventsInput = false;
+				workCondition = true;
+				break;
+			default:
+				std::cout << "Wrong input! Try Again" << std::endl;
+				break;
+			}
+
 		}
 	}
 	
