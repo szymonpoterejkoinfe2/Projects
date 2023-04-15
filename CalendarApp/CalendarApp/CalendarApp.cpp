@@ -11,7 +11,7 @@ int main()
 {
     MainMenu();
     
-    return 0;
+    
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
