@@ -93,6 +93,10 @@ void CheckCalendarMenu(bool &GoBack)
 			ValidateInputYearData(UserInputYear[0],WorkCondition);
 			UserInputYear[1] = UserInputYear[0];
 			FoundEvents = FindEvents(UserInputYear);
+			for (int year = stoi(UserInputYear[0]); year <= stoi(UserInputYear[1]); year++)
+			{
+				PrintCalendar(year, FoundEvents);
+			}
 			PresentAllEvents(FoundEvents);
 		}
 		break;
@@ -106,6 +110,11 @@ void CheckCalendarMenu(bool &GoBack)
 			std::cin >> UserInputYear[1];
 			ValidateInputYearData(UserInputYear[1],WorkCondition);
 			FoundEvents = FindEvents(UserInputYear);
+			for(int year = stoi(UserInputYear[0]); year <= stoi(UserInputYear[1]); year++)
+			{
+				PrintCalendar(year, FoundEvents);
+			}
+		
 			PresentAllEvents(FoundEvents);
 		}
 		break;
@@ -155,7 +164,7 @@ EventHolder FindEvents(std::string yearInterval[2]) {
 	{
 		
 		std::ifstream EventsFile(IntToString(year)+".txt");
-		std::cout << "Looking For Events in "<< IntToString(year)<< std::endl;
+		//std::cout << "Looking For Events in "<< IntToString(year)<< std::endl;
 		if (EventsFile)
 		{
 			std::string EventName, country, town, street, number;
@@ -178,13 +187,13 @@ EventHolder FindEvents(std::string yearInterval[2]) {
 	}
 
 	std::ifstream PeriodicEventsFile("Periodic.txt");
-	std::cout << "Looking For Periodic Events"<< std::endl;
+	//std::cout << "Looking For Periodic Events"<< std::endl;
 	std::string EventName, country, town, street, number;
 	int year, month, day;
 
 	if (PeriodicEventsFile)
 	{
-		std::cout << "Periodic Found" << std::endl;
+		
 		while (PeriodicEventsFile >> EventName >> day >> month >> year >> country >> town >> street >> number)
 		{
 			bool isPeriodic = true;
@@ -204,7 +213,7 @@ void PresentAllEvents(EventHolder& FoundEvents)
 {
 	// if FoundEvents.yeaar = year of calendar
 	std::cout << "---------------------- Events ----------------------" << std::endl;
-	std::cout << "Id EventName    Date     Location   Periodic " << std::endl;
+	std::cout << "Id	EventName    Date     Location   Periodic " << std::endl;
 	std::cout << "----------------------------------------------------" << std::endl;
 	for (int EventId = 0; EventId < FoundEvents.AllEventsSize(); EventId++)
 	{
@@ -384,4 +393,145 @@ std::string IntToString(int Number)
 	std::ostringstream ss;
 	ss << Number;
 	return ss.str();;
+}
+
+void PrintCalendar(int &Year, EventHolder& allEvents)
+{
+	std::cout<<"----------- " << Year << " -----------"<<std::endl << std::endl;
+	int days;
+
+	// Index of the day from 0 to 6
+	int current = DayNumber(1, 1, Year);
+
+	// i --> Iterate through all the months
+	// j --> Iterate through all the days of the
+	//       month - i
+	for (int month = 0; month < 12; month++)
+	{
+		days = numberOfDays(month, Year);
+		bool notPrinted = true;
+
+		// Print the current month name
+		std::cout << "-----------" << getMonthName(month) << "-----------" << std::endl;
+
+		// Print the columns
+		std::cout<<" Su  Mo  Tu  We  Th  Fr  Sa\n";
+
+		// Print appropriate spaces
+		int Spaces;
+		for (Spaces = 0; Spaces < current; Spaces++)
+			std::cout<<"    ";
+
+		for (int Day = 1; Day <= days; Day++)
+		{
+			for (int event = 0; event < allEvents.AllEventsSize(); event++)
+			{
+				if (allEvents.GetEvent(event).GetDate()->GetDay() == Day && allEvents.GetEvent(event).GetDate()->GetMonth() == (month+1) && (allEvents.GetEvent(event).GetDate()->GetYear() == Year || allEvents.GetEvent(event).GetDate()->GetYear() == 0))
+				{
+				
+					std::cout << " [" << Day << "] ";
+					notPrinted = false;
+				}
+				
+
+			}
+			if (notPrinted)
+			{
+				if (Day < 10)
+				{
+					std::cout << " 0" << Day << " ";
+				}
+				else std::cout << " " << Day << " ";
+			}
+			notPrinted = true;
+			if (++Spaces > 6)
+			{
+				Spaces = 0;
+				std::cout << std::endl;
+			}
+		}
+
+		if (Spaces)
+			std::cout<<std::endl;
+
+		current = Spaces;
+	}
+	std::cout << "-----------------------------" << std::endl << std::endl;
+	
+}
+
+int DayNumber(int day, int month, int year)
+{
+	static int t[] = { 0,3,2,5,0,3,5,1,4,6,2,4 };
+
+	year -= month < 3;
+	return (year + year / 4 - year / 100 +
+		year / 400 + t[month - 1] + day) % 7;
+
+}
+
+std::string getMonthName(int monthNumber)
+{
+	std::string months[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"};
+
+	return (months[monthNumber]);
+}
+
+int numberOfDays(int monthNumber, int year)
+{
+	// January
+	if (monthNumber == 0)
+		return (31);
+
+	// February
+	if (monthNumber == 1)
+	{
+		// If the year is leap then February has
+		// 29 days
+		if (year % 400 == 0 ||
+			(year % 4 == 0 && year % 100 != 0))
+			return (29);
+		else
+			return (28);
+	}
+
+	// March
+	if (monthNumber == 2)
+		return (31);
+
+	// April
+	if (monthNumber == 3)
+		return (30);
+
+	// May
+	if (monthNumber == 4)
+		return (31);
+
+	// June
+	if (monthNumber == 5)
+		return (30);
+
+	// July
+	if (monthNumber == 6)
+		return (31);
+
+	// August
+	if (monthNumber == 7)
+		return (31);
+
+	// September
+	if (monthNumber == 8)
+		return (30);
+
+	// October
+	if (monthNumber == 9)
+		return (31);
+
+	// November
+	if (monthNumber == 10)
+		return (30);
+
+	// December
+	if (monthNumber == 11)
+		return (31);
 }

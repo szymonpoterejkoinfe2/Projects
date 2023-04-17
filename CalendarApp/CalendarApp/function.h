@@ -26,11 +26,19 @@ void AddEventMenu(bool& GoBack,EventHolder &allEvents);
 void SaveEventInFile(Event EventToSave);
 
 // Function Convert IntToString
-std::string IntToString(int a);
+std::string IntToString(int Number);
 
 //Function which reads all events for given year interval
 EventHolder FindEvents(std::string yearInterval[2]);
 
 //Function which prints all events for given year interva
 void PresentAllEvents(EventHolder& FoundEvents);
+
+void PrintCalendar(int &Year, EventHolder& allEvents);
+
+int DayNumber(int day, int month, int year);
+
+std::string getMonthName(int monthNumber);
+
+int numberOfDays(int monthNumber, int year);
 #endif
