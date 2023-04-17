@@ -19,6 +19,7 @@ void MainMenu()
 #pragma region GenerateMainMenu
 	while (LoopingCondition)
 	{
+
 		GetTodaysDate();
 		std::cout << " Chose what you want to do:" << std::endl << "1. Check calendar" << std::endl << "2. Add event" << std::endl << "3. Exit program" << std::endl << "Enter your choice: ";
 		std::cin >> UserSelection;
@@ -76,6 +77,7 @@ void CheckCalendarMenu(bool &GoBack)
 	char UserSelection;
 	bool WorkCondition = true;
 	std::string UserInputYear[2];
+	EventHolder FoundEvents;
 #pragma endregion
 
 #pragma region GenerateCalendarMenu
@@ -89,6 +91,9 @@ void CheckCalendarMenu(bool &GoBack)
 			std::cout << "Enter year of your intrest: ";
 			std::cin >> UserInputYear[0];
 			ValidateInputYearData(UserInputYear[0],WorkCondition);
+			UserInputYear[1] = UserInputYear[0];
+			FoundEvents = FindEvents(UserInputYear);
+			PresentAllEvents(FoundEvents);
 		}
 		break;
 	case '2':
@@ -100,6 +105,8 @@ void CheckCalendarMenu(bool &GoBack)
 			std::cout << "Enter end of the interval: ";
 			std::cin >> UserInputYear[1];
 			ValidateInputYearData(UserInputYear[1],WorkCondition);
+			FoundEvents = FindEvents(UserInputYear);
+			PresentAllEvents(FoundEvents);
 		}
 		break;
 	case '3':
@@ -135,6 +142,77 @@ bool ValidateInputYearData( const std::string& Year, bool &LoopBool) {
 	//std::cout << "proper input provided";
 	LoopBool = false;
 	return true;
+}
+
+EventHolder FindEvents(std::string yearInterval[2]) {
+
+	EventHolder FoundEvents;
+	int BeginningOfInterval, EndOfInterval;
+	BeginningOfInterval = stoi(yearInterval[0]);
+	EndOfInterval = stoi(yearInterval[1]);
+
+	for (int year = BeginningOfInterval; year <= EndOfInterval ; year++)
+	{
+		
+		std::ifstream EventsFile(IntToString(year)+".txt");
+		std::cout << "Looking For Events in "<< IntToString(year)<< std::endl;
+		if (EventsFile)
+		{
+			std::string EventName, country, town, street, number;
+			int year, month, day;
+
+			while (EventsFile >> EventName >> day >> month >> year >> country >> town >> street >> number)
+			{
+				
+				bool isPeriodic = false;
+				Date EventDate;
+				EventDate.SetDate(day, month, year);
+				Location EventLocation;
+				EventLocation.SetLocation(country, town, street, number);
+
+				Event NewEvent(EventName, new Date(EventDate), new Location(EventLocation), isPeriodic);
+				FoundEvents.EventHolderPushBack(NewEvent);
+			}
+		}
+		EventsFile.close();
+	}
+
+	std::ifstream PeriodicEventsFile("Periodic.txt");
+	std::cout << "Looking For Periodic Events"<< std::endl;
+	std::string EventName, country, town, street, number;
+	int year, month, day;
+
+	if (PeriodicEventsFile)
+	{
+		std::cout << "Periodic Found" << std::endl;
+		while (PeriodicEventsFile >> EventName >> day >> month >> year >> country >> town >> street >> number)
+		{
+			bool isPeriodic = true;
+			Date EventDate;
+			EventDate.SetDate(day, month, year);
+			Location EventLocation;
+			EventLocation.SetLocation(country, town, street, number);
+
+			Event NewEvent(EventName, new Date(EventDate), new Location(EventLocation), isPeriodic);
+			FoundEvents.EventHolderPushBack(NewEvent);
+		}
+	}
+	return FoundEvents;
+}
+
+void PresentAllEvents(EventHolder& FoundEvents)
+{
+	// if FoundEvents.yeaar = year of calendar
+	std::cout << "---------------------- Events ----------------------" << std::endl;
+	std::cout << "Id EventName    Date     Location   Periodic " << std::endl;
+	std::cout << "----------------------------------------------------" << std::endl;
+	for (int EventId = 0; EventId < FoundEvents.AllEventsSize(); EventId++)
+	{
+		std::cout << EventId << ". ";
+		FoundEvents.GetEvent(EventId).PresentEvent();
+	}
+	
+	std::cout << "----------------------------------------------------" << std::endl;
 }
 
 void AddEventMenu(bool& GoBack, EventHolder &allEvents) {
@@ -285,7 +363,7 @@ void SaveEventInFile(Event EventToSave)
 		std::ofstream SaveFile("Periodic.txt", std::ofstream::app);
 		if (SaveFile)
 		{
-			SaveFile << EventToSave.GetEventName() << " " << IntToString(EventToSave.GetDate()->GetDay()) << " " << IntToString(EventToSave.GetDate()->GetMonth())<<" every year";
+			SaveFile << EventToSave.GetEventName() << " " << IntToString(EventToSave.GetDate()->GetDay()) << " " << IntToString(EventToSave.GetDate()->GetMonth())<<" 0000";
 			SaveFile << " " << EventToSave.GetLocation()->GetCountry() << " " << EventToSave.GetLocation()->GetTown() << " " << EventToSave.GetLocation()->GetStreet() << " " << EventToSave.GetLocation()->GetNumber() << std::endl;
 		}
 		SaveFile.close();

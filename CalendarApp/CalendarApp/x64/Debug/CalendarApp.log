@@ -1,2 +1,3 @@
-﻿  function.cpp
-  CalendarApp.vcxproj -> C:\Users\Szymon\Desktop\FOCP\Projects\CalendarApp\x64\Debug\CalendarApp.exe
+﻿  Class.cpp
+C:\Users\Szymon\Desktop\ĆwiczeniaProgramowanie\Projects\CalendarApp\CalendarApp\Class.cpp(148,25): warning C4267: "return": konwersja z "size_t" do "int", możliwa utrata danych
+  CalendarApp.vcxproj -> C:\Users\Szymon\Desktop\ĆwiczeniaProgramowanie\Projects\CalendarApp\x64\Debug\CalendarApp.exe

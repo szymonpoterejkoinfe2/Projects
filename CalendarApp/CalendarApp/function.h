@@ -27,4 +27,10 @@ void SaveEventInFile(Event EventToSave);
 
 // Function Convert IntToString
 std::string IntToString(int a);
+
+//Function which reads all events for given year interval
+EventHolder FindEvents(std::string yearInterval[2]);
+
+//Function which prints all events for given year interva
+void PresentAllEvents(EventHolder& FoundEvents);
 #endif

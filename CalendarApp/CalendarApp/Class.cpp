@@ -68,7 +68,18 @@ int Date::GetDay()
 
 void Date::PrintDate()
 {
-	std::cout << Day << "." << Month << "." << Year;
+
+	std::cout<<" | " << Day << ".";
+	if (Month < 10)
+	{
+		std::cout << "0" << Month;
+	}else std::cout<< Month;
+	std::cout << ".";
+	if (Year != 0)
+	{
+		std::cout << Year;
+	}
+	std::cout << " | ";
 }
 #pragma endregion
 
@@ -107,8 +118,13 @@ void Event::PresentEvent()
 {
 	std::cout << EventName << " ";
 	date->PrintDate();
-	std::cout << std::endl;
+	std::cout << " ";
 	location->PrintLocation();
+	std::cout << " |";
+	if (Repetable)
+	{
+		std::cout << " Yes";
+	}else std::cout << " No";
 	std::cout<<std::endl;
 
 }
