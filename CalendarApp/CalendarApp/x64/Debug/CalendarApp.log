@@ -1,3 +1,2 @@
 ﻿  function.cpp
-C:\Users\Szymon\Desktop\FOCP\Projects\CalendarApp\CalendarApp\function.cpp(537): warning C4715: "numberOfDays”: niewszystkie ścieżki kodu zwracają wartość
-  CalendarApp.vcxproj -> C:\Users\Szymon\Desktop\FOCP\Projects\CalendarApp\x64\Debug\CalendarApp.exe
+  CalendarApp.vcxproj -> C:\Users\Szymon\Desktop\ĆwiczeniaProgramowanie\Projects\CalendarApp\x64\Debug\CalendarApp.exe
