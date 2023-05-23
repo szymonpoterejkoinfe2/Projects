@@ -61,6 +61,26 @@ public:
     void PrintDate();
 };
 
+class Time : Date
+{
+private: 
+    int Hour;
+    int Minute;
+public:
+    //Empty Time Constructor
+    Time();
+
+    //Full Time Constructor
+    Time(int hour, int minute);
+
+    //Function to return Hour
+    int GetHour();
+
+    //Function to return Minute
+    int GetMinute();
+};
+
+
 class Event
 {
 private:
