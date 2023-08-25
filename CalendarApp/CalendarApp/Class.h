@@ -5,7 +5,7 @@
 #include <vector>
 
 
-class Location
+class EventLocation
 {
 private:
     std::string Country;
@@ -14,7 +14,7 @@ private:
     std::string Number;
 public:
     //Empty Location Object Constructor
-    Location();
+    EventLocation();
 
     //Full Location Object Constructor
     void SetLocation(const std::string country, const std::string town, const std::string street, const std::string number);
@@ -35,7 +35,24 @@ public:
     void PrintLocation();
 };
 
-class Date
+class EventTime
+{
+public:
+    // Prints Date or Time
+    virtual void Print() = 0;
+
+    // returns Year or Hour
+    virtual int GetFirstValue() = 0;
+
+    //returns Month or minute
+    virtual int GetSecondValue() = 0;
+
+    //returns Day
+    virtual int GetThirdValue() = 0;
+};
+
+
+class Date: public EventTime
 {
 private:
     int Day;
@@ -46,38 +63,50 @@ public:
     Date();
 
     //Full Date Object Constructor
-    void SetDate(const int day, const int month, const int year);
+    Date(const int day, const int month, const int year);
 
     //Function which returns Date year
-    int GetYear();
+    int GetFirstValue() override;
 
     //Function which returns Date month
-    int GetMonth();
+    int GetSecondValue() override;
 
     //Function which returns Date day
-    int GetDay();
+    int GetThirdValue() override;
 
     //Printing Date Object
-    void PrintDate();
+    void Print() override;
+
+
+   
+
 };
 
-class Time : Date
+class Clock : public EventTime
 {
 private: 
     int Hour;
     int Minute;
 public:
     //Empty Time Constructor
-    Time();
+    Clock();
 
     //Full Time Constructor
-    Time(int hour, int minute);
+    Clock(int hour, int minute);
 
-    //Function to return Hour
-    int GetHour();
+    //Function which returns Date hour
+    int GetFirstValue() override;
 
-    //Function to return Minute
-    int GetMinute();
+    //Function which returns Date minute
+    int GetSecondValue() override;
+    
+
+    int GetThirdValue() override;
+
+    //Printing Clock Object
+    void Print() override;
+   
+  
 };
 
 
@@ -85,8 +114,8 @@ class Event
 {
 private:
     std::string EventName;
-    Date* date;
-    Location* location;
+    std::vector<EventTime*> EventTimeVector;
+    EventLocation* Location;
     bool Repetable;
 public:
     
@@ -94,19 +123,19 @@ public:
     Event();
 
     //No Location Event Constructor;
-    Event(std::string eventName, Date* eventDate, const bool repetableEvent);
+    Event(std::string eventname, std::vector<EventTime*>  eventTimeVector, const bool repetableEvent);
 
     //Full Event Constructor
-    Event( std::string eventName, Date* eventDate, Location* eventLocation, const bool repetableEvent);
+    Event( std::string eventname, std::vector<EventTime*>  eventTimeVector, EventLocation* eventLocation, const bool repetableEvent);
 
     //Function to get Event Name
     std::string GetEventName();
 
     //Function to get Event Date
-    Date* GetDate();
+    std::vector<EventTime*> GetDate();
 
     //Function to get Event Location
-    Location* GetLocation();
+    EventLocation* GetLocation();
 
     //Function to get Event RepetableBool
     bool GetRepetable();
@@ -125,14 +154,22 @@ public:
     //EventHolder Constructor
     EventHolder();
 
+    EventHolder(std::vector<Event> EventsVector);
+
     //Function to pushback() Event to EventHolder
-    void EventHolderPushBack(Event event);
+    EventHolder operator+(Event event);
 
     //Function to access i value of EventHolder vector
     Event GetEvent(int EventNumber);
 
     //Function which returns EventHolder vector size
     int AllEventsSize();
+
+    //Function which clears vector
+    void ClearVector();
+   
+    //Function which removes given event
+    void RemoveEvent(int &EventId);
 };
 
 

@@ -17,10 +17,19 @@ void GetTodaysDate();
 void CheckCalendarMenu(bool &GoBack);
 
 //Function which evaluate corectness of input year value.
-bool ValidateInputYearData( const std::string &Year, bool &LoopBool);
+bool ValidateInputYearData(std::string &Year, bool &LoopBool);
 
 // Function which displays and manage event addition menu.
 void AddEventMenu(bool& GoBack,EventHolder &allEvents);
+
+// Function to veryf if string contains only digits
+bool IsNumber(std::string& input);
+
+// Function to display delete event menu
+void DeleteEventMenu(bool& GoBack);
+
+// Function to delete event from file
+void DeleteEvent( int& EventId, EventHolder& EventsToSave);
 
 // Fonction which saves Event to text file.
 void SaveEventInFile(Event EventToSave);
@@ -41,8 +50,9 @@ void PrintCalendar(int &Year, EventHolder& allEvents);
 int DayNumber(int day, int month, int year);
 
 // Function which returns name of month from numerical form.
-std::string getMonthName(int monthNumber);
+std::string GetMonthName(int monthNumber);
 
 //Function which returns number of days in given month.
-int numberOfDays(int monthNumber, int year);
+int NumberOfDays(int monthNumber, int year);
+
 #endif

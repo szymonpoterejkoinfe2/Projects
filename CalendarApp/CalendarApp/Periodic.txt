@@ -1,2 +1,0 @@
-PeriodicE 8 15 0000 No location to display
-PerEve2 25 2 0000 No location to display

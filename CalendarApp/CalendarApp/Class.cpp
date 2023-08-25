@@ -5,9 +5,9 @@
 #include <string>
 
 #pragma region LoctionClass
-Location::Location()
+EventLocation::EventLocation()
 	: Country(), Town(), Street(), Number() {}
-void Location::SetLocation(const std::string country, const std::string town, const std::string street, const std::string number)
+void EventLocation::SetLocation(const std::string country, const std::string town, const std::string street, const std::string number)
 {
 	Country = country;
 	Town = town;
@@ -15,26 +15,28 @@ void Location::SetLocation(const std::string country, const std::string town, co
 	Number = number;
 }
 
-std::string Location::GetCountry()
+std::string EventLocation::GetCountry()
 {
 	return Country;
 }
 
-std::string Location::GetTown()
+std::string EventLocation::GetTown()
 {
 	return Town;
 }
 
-std::string Location::GetStreet()
+std::string EventLocation::GetStreet()
 {
 	return Street;
 }
 
-std::string Location::GetNumber()
+std::string EventLocation::GetNumber()
 {
 	return Number;
 }
-void Location::PrintLocation()
+
+
+void EventLocation::PrintLocation()
 {
 	std::cout << Country << " " << Town << " " << Street << " " << Number;
 }
@@ -44,29 +46,26 @@ void Location::PrintLocation()
 Date::Date() :
 	Year(), Month(), Day() {}
 
-void Date::SetDate(const int day, const int month, const int year)
-{
-	Day = day;
-	Month = month;
-	Year = year;
-}
+Date::Date(const int day, const int month, const int year) : Day(day), Month(month), Year(year) {}
 
-int Date::GetYear()
+int Date::GetFirstValue()
 {
 	return Year;
 }
 
-int Date::GetMonth()
+int Date::GetSecondValue()
 {
 	return Month;
 }
 
-int Date::GetDay()
+int Date::GetThirdValue()
 {
 	return Day;
 }
 
-void Date::PrintDate()
+
+
+void Date::Print()
 {
 
 	std::cout<<" | " << Day << ".";
@@ -79,19 +78,73 @@ void Date::PrintDate()
 	{
 		std::cout << Year;
 	}
+	else
+	{
+		std::cout << "0000";
+	}
 	std::cout << " | ";
 }
 #pragma endregion
 
+#pragma region ClockClass
+
+Clock::Clock() :
+	Hour(), Minute() {}
+
+Clock::Clock(int hour, int minute) : Hour(hour), Minute(minute) {}
+
+void Clock::Print()
+{
+	if (Hour < 10)
+	{
+		std::cout << "0" << Hour;
+	}
+	else {
+		std::cout << Hour;
+	}
+	std::cout << ":";
+	
+	if (Minute < 10 && Minute != 0)
+	{
+		std::cout << "0" << Minute;
+	}
+	else if (Minute == 0)
+	{
+		std::cout << "00";
+	}
+	else
+	{
+		std::cout << Minute;
+	}
+	std::cout << " | ";
+}
+
+int Clock::GetFirstValue()
+{
+	return Hour;
+}
+
+int Clock::GetSecondValue() 
+{
+	return Minute;
+}
+
+int Clock::GetThirdValue()
+{
+	return 0;
+}
+
+#pragma endregion
+
 #pragma region EventClass
 Event::Event() :
-	EventName(""), date(nullptr), location(nullptr), Repetable(nullptr) {}
+	EventName(""), EventTimeVector(), Location(nullptr), Repetable(nullptr) {}
 
-Event::Event(std::string eventName, Date* eventDate, const bool repetableEvent) :
-	EventName(eventName), date(eventDate), location(nullptr), Repetable(repetableEvent) {}
+Event::Event(std::string eventName, std::vector<EventTime*> eventTimeVector, const bool repetableEvent) :
+	EventName(eventName), EventTimeVector(eventTimeVector), Location(nullptr), Repetable(repetableEvent) {}
 
-Event::Event( std::string eventName, Date* eventDate, Location* eventLocation, const bool repetableEvent) : 
-	EventName(eventName), date(eventDate), location(eventLocation), Repetable(repetableEvent) {}
+Event::Event( std::string eventName, std::vector<EventTime*> eventTimeVector, EventLocation* eventLocation, const bool repetableEvent) :
+	EventName(eventName), EventTimeVector(eventTimeVector), Location(eventLocation), Repetable(repetableEvent) {}
 
 
 std::string Event::GetEventName()
@@ -99,14 +152,14 @@ std::string Event::GetEventName()
 	return EventName;
 }
 
-Date* Event::GetDate()
+std::vector<EventTime*> Event::GetDate()
 {
-	return date;
+	return EventTimeVector;
 }
 
-Location* Event::GetLocation()
+EventLocation* Event::GetLocation()
 {
-	return location;
+	return Location;
 }
 
 bool Event::GetRepetable()
@@ -117,9 +170,11 @@ bool Event::GetRepetable()
 void Event::PresentEvent()
 {
 	std::cout << EventName << " ";
-	date->PrintDate();
+	EventTimeVector[0]->Print();
 	std::cout << " ";
-	location->PrintLocation();
+	EventTimeVector[1]->Print();
+	std::cout << " ";
+	Location->PrintLocation();
 	std::cout << " |";
 	if (Repetable)
 	{
@@ -133,9 +188,13 @@ void Event::PresentEvent()
 #pragma region EventHolderClass
 EventHolder::EventHolder() {}
 
-void EventHolder::EventHolderPushBack(Event event) {
+EventHolder::EventHolder(std::vector<Event> EventsVector): AllEvents(EventsVector) {}
+
+EventHolder EventHolder::operator+(Event event) {
 
 	AllEvents.push_back(event);
+	
+	return EventHolder(AllEvents);
 }
 
 Event EventHolder::GetEvent(int EventNumber)
@@ -146,5 +205,14 @@ Event EventHolder::GetEvent(int EventNumber)
 int EventHolder::AllEventsSize()
 {
 	return AllEvents.size();
+}
+void EventHolder::ClearVector()
+{
+	   AllEvents.clear();
+}
+
+void EventHolder::RemoveEvent(int& EventId)
+{
+	AllEvents.erase(AllEvents.begin() + EventId);;
 }
 #pragma endregion

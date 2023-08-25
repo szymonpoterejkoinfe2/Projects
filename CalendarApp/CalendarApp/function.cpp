@@ -21,7 +21,7 @@ void MainMenu()
 	{
 
 		GetTodaysDate();
-		std::cout << " Chose what you want to do:" << std::endl << "1. Check calendar" << std::endl << "2. Add event" << std::endl << "3. Exit program" << std::endl << "Enter your choice: ";
+		std::cout << " Chose what you want to do:" << std::endl << "1. Check calendar" << std::endl << "2. Add event" << std::endl<< "3. Delete event" << std::endl << "4. Exit program" << std::endl << "Enter your choice: ";
 		std::cin >> UserSelection;
 
 		switch (UserSelection) {
@@ -36,6 +36,10 @@ void MainMenu()
 			AddEventMenu(LoopingCondition, AllEventsVector);
 			break;
 		case '3':
+			LoopingCondition = false;
+			DeleteEventMenu(LoopingCondition);
+			break;
+		case '4':
 			std::cout << "Exit Application";
 			LoopingCondition = false;
 			break;
@@ -191,19 +195,124 @@ void CheckCalendarMenu(bool &GoBack)
 
 }
 
-bool ValidateInputYearData( const std::string& Year, bool &LoopBool) {
+void DeleteEventMenu(bool& GoBack)
+{
+	
+	std::string UserInputYear, UserInputId;
+	std::string InputYears[2];
+	EventHolder FoundEvents;
+	bool ImproperInputYear = true, ImproperInputId = true;
+
+	while (ImproperInputYear)
+	{
+		std::cout << "Enter year of event you want to delete: ";
+		std::cin >> UserInputYear;
+
+		if (IsNumber(UserInputYear) && (stoi(UserInputYear) >0))
+		{
+			
+
+			InputYears[0] = UserInputYear;
+			InputYears[1] = UserInputYear;
+
+			FoundEvents = FindEvents(InputYears);
+
+
+			if (FoundEvents.AllEventsSize() != 0)
+			{
+				ImproperInputYear = false;
+
+
+
+				PresentAllEvents(FoundEvents);
+				//std::cout << std::endl;
+
+
+				while (ImproperInputId)
+				{
+					std::cout << "Enter id of Event you want to Delete:";
+					std::cin >> UserInputId;
+
+					if (IsNumber(UserInputId) && (stoi(UserInputId) >= 0) && (stoi(UserInputId) <= (FoundEvents.AllEventsSize() - 1)))
+					{
+						int Index = stoi(UserInputId);
+						Event EventToRemove = FoundEvents.GetEvent(Index);
+						
+						ImproperInputId = false;
+						FoundEvents.RemoveEvent(Index);
+
+						if (FoundEvents.AllEventsSize() == 0 && EventToRemove.GetDate()[0]->GetFirstValue() !=0)
+						{
+							std::ofstream(IntToString(EventToRemove.GetDate()[0]->GetFirstValue()) + ".txt");
+						}
+						else {
+							DeleteEvent(Index, FoundEvents);
+						}
+						
+
+						//std::cout << FoundEvents.AllEventsSize() << std::endl;
+
+						std::cout << "Event Deleted" << std::endl;
+						GoBack = true;
+					}
+
+				}
+			}
+			else {
+			
+				std::cout << "No events in given year! " << std::endl;
+			}
+		}
+		
+	}
+
+}
+
+void DeleteEvent( int &EventId, EventHolder & EventsToSave)
+{
+
+	std::string FileName;
+	for (int Event = 0; Event < EventsToSave.AllEventsSize(); Event++)
+	{
+		if (EventsToSave.GetEvent(Event).GetDate()[0]->GetFirstValue() != 0)
+		{
+			FileName = (IntToString(EventsToSave.GetEvent(Event).GetDate()[0]->GetFirstValue()) + ".txt");
+		}
+	}
+
+	
+	std::ofstream SaveFilePeriodic("Periodic.txt");
+	std::ofstream SaveFile(FileName);
+
+	for (int Event = 0; Event < EventsToSave.AllEventsSize(); Event++)
+	{
+		if (EventsToSave.GetEvent(Event).GetDate()[0]->GetFirstValue() == 0)
+		{
+			SaveFilePeriodic << EventsToSave.GetEvent(Event).GetEventName() << " " << IntToString(EventsToSave.GetEvent(Event).GetDate()[0]->GetThirdValue()) << " " << IntToString(EventsToSave.GetEvent(Event).GetDate()[0]->GetSecondValue()) << " 0000 ";
+			SaveFilePeriodic << IntToString(EventsToSave.GetEvent(Event).GetDate()[1]->GetFirstValue()) << " " << IntToString(EventsToSave.GetEvent(Event).GetDate()[1]->GetSecondValue());
+			SaveFilePeriodic << " " << EventsToSave.GetEvent(Event).GetLocation()->GetCountry() << " " << EventsToSave.GetEvent(Event).GetLocation()->GetTown() << " " << EventsToSave.GetEvent(Event).GetLocation()->GetStreet() << " " << EventsToSave.GetEvent(Event).GetLocation()->GetNumber() << std::endl;
+		}
+		else
+		{
+			SaveFile << EventsToSave.GetEvent(Event).GetEventName() << " " << IntToString(EventsToSave.GetEvent(Event).GetDate()[0]->GetThirdValue()) << " " << IntToString(EventsToSave.GetEvent(Event).GetDate()[0]->GetSecondValue()) << " " << IntToString(EventsToSave.GetEvent(Event).GetDate()[0]->GetFirstValue());
+			SaveFile << " " << IntToString(EventsToSave.GetEvent(Event).GetDate()[1]->GetFirstValue()) << " " << IntToString(EventsToSave.GetEvent(Event).GetDate()[1]->GetSecondValue());
+			SaveFile << " " << EventsToSave.GetEvent(Event).GetLocation()->GetCountry() << " " << EventsToSave.GetEvent(Event).GetLocation()->GetTown() << " " << EventsToSave.GetEvent(Event).GetLocation()->GetStreet() << " " << EventsToSave.GetEvent(Event).GetLocation()->GetNumber() << std::endl;
+		}
+	}
+	SaveFilePeriodic.close();
+	SaveFile.close();
+}
+
+bool ValidateInputYearData( std::string& Year, bool &LoopBool) {
 
 	//Loop to chcek if every character in year is digit
-	for (int YearDigit = 0; YearDigit < Year.size(); YearDigit++)
-	{
-		
-		if (!isdigit(Year[YearDigit]))
+
+		if (!IsNumber(Year))
 		{
 			//std::cout << "improper input provided";
 			return false;
 		}
-		
-	}
+
 	int Yearint = stoi(Year);
 	if (Yearint < 1)
 	{
@@ -232,20 +341,23 @@ EventHolder FindEvents(std::string yearInterval[2]) {
 		if (EventsFile)
 		{
 			std::string EventName, country, town, street, number;
-			int year, month, day;
+			int year, month, day, hour, minute;
 
 			// Extract all data and create Event object then push it to Eventholder object.
-			while (EventsFile >> EventName >> day >> month >> year >> country >> town >> street >> number)
+			while (EventsFile >> EventName >> day >> month >> year >>hour >> minute >> country >> town >> street >> number)
 			{
 				
 				bool isPeriodic = false;
-				Date EventDate;
-				EventDate.SetDate(day, month, year);
-				Location EventLocation;
-				EventLocation.SetLocation(country, town, street, number);
+				
+				std::vector<EventTime*> eventTime;
+				eventTime.push_back(new Date(day, month, year));
+				eventTime.push_back(new Clock(hour, minute));
 
-				Event NewEvent(EventName, new Date(EventDate), new Location(EventLocation), isPeriodic);
-				FoundEvents.EventHolderPushBack(NewEvent);
+				EventLocation eventLocation;
+				eventLocation.SetLocation(country, town, street, number);
+
+				Event NewEvent(EventName, eventTime, new EventLocation(eventLocation), isPeriodic);
+				FoundEvents + NewEvent;
 			}
 		}
 		EventsFile.close();
@@ -254,22 +366,25 @@ EventHolder FindEvents(std::string yearInterval[2]) {
 	//Searching for periodic events
 	std::ifstream PeriodicEventsFile("Periodic.txt");
 	std::string EventName, country, town, street, number;
-	int year, month, day;
+	int year, month, day, hour, minute;
 
 	//If periodic events file found
 	if (PeriodicEventsFile)
 	{
 		//Extract all data and create Event Object
-		while (PeriodicEventsFile >> EventName >> day >> month >> year >> country >> town >> street >> number)
+		while (PeriodicEventsFile >> EventName >> day >> month >> year >>hour >>minute >>country >> town >> street >> number)
 		{
 			bool isPeriodic = true;
-			Date EventDate;
-			EventDate.SetDate(day, month, year);
-			Location EventLocation;
-			EventLocation.SetLocation(country, town, street, number);
+			
+			std::vector<EventTime*> eventTime;
+			eventTime.push_back(new Date(day, month, year));
+			eventTime.push_back(new Clock(hour, minute));
 
-			Event NewEvent(EventName, new Date(EventDate), new Location(EventLocation), isPeriodic);
-			FoundEvents.EventHolderPushBack(NewEvent);
+			EventLocation eventLocation;
+			eventLocation.SetLocation(country, town, street, number);
+
+			Event NewEvent(EventName, eventTime, new EventLocation(eventLocation), isPeriodic);
+			FoundEvents + (NewEvent);
 		}
 	}
 	PeriodicEventsFile.close();
@@ -281,9 +396,9 @@ EventHolder FindEvents(std::string yearInterval[2]) {
 void PresentAllEvents(EventHolder& FoundEvents)
 {
 	// Printing Event Information
-	std::cout << "---------------------- Events ----------------------" << std::endl;
-	std::cout << "Id	EventName    Date     Location   Periodic " << std::endl;
-	std::cout << "----------------------------------------------------" << std::endl;
+	std::cout << "------------------------ Events ------------------------" << std::endl;
+	std::cout << "Id	EventName    Date   Time   Location   Periodic " << std::endl;
+	std::cout << "--------------------------------------------------------" << std::endl;
 	for (int EventId = 0; EventId < FoundEvents.AllEventsSize(); EventId++)
 	{
 		//Presenting Event
@@ -301,7 +416,7 @@ void AddEventMenu(bool& GoBack, EventHolder &allEvents) {
 	while (workCondition)
 	{
 	#pragma region Variables
-		std::string Country, Town, Street, Number, EventName, Day, Month, Year;
+		std::string Country, Town, Street, Number, EventName, Day, Month, Year, Hour, Minute;
 		char PeriodicQuestion, LocationQuestion, AddMoreEventsQuestion;
 		bool isPeriodic = false, haveLocation = false;
 	#pragma endregion
@@ -312,11 +427,112 @@ void AddEventMenu(bool& GoBack, EventHolder &allEvents) {
 		std::getline(std::cin,EventName);
 		std::cin.clear();
 
-	#pragma region MakeDateObject
+	#pragma region MakeEventTimeObjects
 
-		//Specifying Event Date
-		std::cout << "Enter event date year: "; std::cin >> Year; std::cout << " Enter event date month: "; std::cin >> Month; std::cout << " Enter event date day: "; std::cin >> Day; 
+		//Specifying EventTime object
+		int year = 0, month = 0, day = 0;
+		bool IncorrectInputDate = true;
+		
+		//Input Date Object Data
+		while (IncorrectInputDate)
+		{
+			std::cout << "Enter event date year: "; std::cin >> Year; std::cout << " Enter event date month: "; std::cin >> Month; std::cout << " Enter event date day: "; std::cin >> Day;
 
+			//Verify if input Day/Month/Year are correct
+			if (IsNumber(Year) && IsNumber(Month) && IsNumber(Day))
+			{
+				//Convert string to int
+				year = stoi(Year);
+				month = stoi(Month);
+				day = stoi(Day);
+				
+
+				if (year > 0)
+				{
+					if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+					{
+						if (day >= 1 && day <= 31)
+						{
+							IncorrectInputDate = false;
+						}
+						else {
+							std::cout << "Incorrect Day!";
+						}
+					}
+					else if (month == 4 || month == 6 || month == 9 || month == 11)
+					{
+						if (day >= 1 && day <= 30)
+						{
+							IncorrectInputDate = false;
+						}
+						else {
+							std::cout << "Incorrect Day!";
+						}
+					}
+					else if(month == 2)
+					{
+						if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))
+						{
+							if (day >= 1 && day <= 29)
+							{
+								IncorrectInputDate = false;
+							}
+							else {
+								std::cout << "Incorrect Day!";
+							}
+						}
+						else {
+
+							if (day >= 1 && day <= 28)
+							{
+								IncorrectInputDate = false;
+							}
+							else {
+								std::cout << "Incorrect Day!";
+							}
+						}
+					}
+					else {
+						std::cout << "Incorrect Month!";
+					}
+				}
+				else {
+					std::cout << "Incorrect Year!";
+				}
+				
+			}
+
+		}
+
+
+		
+		int hour = 0, minute = 0;
+		bool IncorrectInputClock = true;
+
+		//Input Clock Object Data
+		while (IncorrectInputClock)
+		{
+			std::cout << "Enter event Time (hour): "; std::cin >> Hour; std::cout << " Enter event Time (minute): "; std::cin >> Minute;
+		
+			//Veryfie input Hour/Minute
+			if (IsNumber(Hour) && IsNumber(Minute))
+			{
+				hour = stoi(Hour);
+				minute = stoi(Minute);
+
+
+				if ((hour >= 0 && hour <= 24) && (minute >= 0 && minute <= 59))
+				{
+					IncorrectInputClock = false;
+				}
+				else {
+				
+					std::wcout << "Incorrect Hour or minute"<<std::endl;
+				}
+			}
+
+		}
+		
 
 		//Set isPeriodic Bool
 		bool WaitingForPeriodicInput = true;
@@ -339,18 +555,16 @@ void AddEventMenu(bool& GoBack, EventHolder &allEvents) {
 				break;
 			}
 		}
-	
 
-		//Convert string to int
-		int year, month, day;
-		year = stoi(Year);
-		month = stoi(Month);
-		day = stoi(Day);
+		//Create EventTimeVector
+		std::vector<EventTime*> eventTime;
+		eventTime.push_back(new Date(day, month, year));
+		eventTime.push_back(new Clock(hour ,minute));
+		
 
 
-		//Create EventDate Object
-		Date EventDate;
-		EventDate.SetDate(day, month, year);
+
+
 #pragma endregion	
 
 	#pragma region MakeLocationObject
@@ -381,20 +595,20 @@ void AddEventMenu(bool& GoBack, EventHolder &allEvents) {
 		if (haveLocation)
 		{
 			std::cout << "Enter Country name: "; std::cin >> Country; std::cout << " Enter Town name: "; std::cin >> Town; std::cout << " Enter Street name: "; std::cin >> Street; std::cout << " Enter number: "; std::cin >> Number;
-			Location EventLocation;
-			EventLocation.SetLocation(Country, Town, Street, Number);
+			EventLocation eventLocation;
+			eventLocation.SetLocation(Country, Town, Street, Number);
 
 			//Create Event Object
-			Event NewEvent(EventName, new Date(EventDate), new Location(EventLocation), isPeriodic);
-			allEvents.EventHolderPushBack(NewEvent);
+			Event NewEvent(EventName, eventTime, new EventLocation(eventLocation), isPeriodic);
+			allEvents + NewEvent;
 		}
 		else
 		{
 			//Create Event Object
-			Location EventLocation;
-			EventLocation.SetLocation("No", "location", "to", "display");
-			Event NewEvent(EventName, new Date(EventDate), new Location(EventLocation), isPeriodic);
-			allEvents.EventHolderPushBack(NewEvent);
+			EventLocation eventLocation;
+			eventLocation.SetLocation("No", "location", "to", "display");
+			Event NewEvent(EventName, eventTime, new EventLocation(eventLocation), isPeriodic);
+			allEvents + NewEvent;
 		}
 #pragma endregion
 
@@ -429,31 +643,93 @@ void AddEventMenu(bool& GoBack, EventHolder &allEvents) {
 		//allEvents.GetEvent(EventNumber).PresentEvent();
 		SaveEventInFile(allEvents.GetEvent(EventNumber));
 	}
+	
+	
+	allEvents.ClearVector();
 
 	GoBack = true;
+}
+
+bool IsNumber(std::string &input)
+{
+	for (char const& c : input) {
+
+		if (std::isdigit(c) == 0)
+			return false;
+	}
+	return true;
+
 }
 
 void SaveEventInFile(Event EventToSave)
 {
 	bool isPeriodic = EventToSave.GetRepetable();
+	EventHolder FoundEvents;
 
-	//Checking if event is periodic. If yes then seve to periodic file
+	//Checking if event is periodic. If yes then save to periodic file
 	if (isPeriodic)
 	{
-		std::ofstream SaveFile("Periodic.txt", std::ofstream::app);
+		std::string PeriodicYear[2];
+		PeriodicYear[0] = "00000";
+		PeriodicYear[1] = "00000";
+
+		std::ifstream PreviousFile("Periodic.txt");
+		if (PreviousFile)
+		{
+			FoundEvents = FindEvents(PeriodicYear);
+		}
+		PreviousFile.close();
+
+		std::ofstream SaveFile("Periodic.txt");
 		if (SaveFile)
 		{
-			SaveFile << EventToSave.GetEventName() << " " << IntToString(EventToSave.GetDate()->GetDay()) << " " << IntToString(EventToSave.GetDate()->GetMonth())<<" 0000";
+			for (int Event = 0; Event < FoundEvents.AllEventsSize(); Event++)
+			{
+				SaveFile << FoundEvents.GetEvent(Event).GetEventName() << " " << IntToString(FoundEvents.GetEvent(Event).GetDate()[0]->GetThirdValue()) << " " << IntToString(FoundEvents.GetEvent(Event).GetDate()[0]->GetSecondValue()) << " 0000 ";
+				SaveFile << IntToString(FoundEvents.GetEvent(Event).GetDate()[1]->GetFirstValue()) << " " << IntToString(FoundEvents.GetEvent(Event).GetDate()[1]->GetSecondValue());
+				SaveFile << " " << FoundEvents.GetEvent(Event).GetLocation()->GetCountry() << " " << FoundEvents.GetEvent(Event).GetLocation()->GetTown() << " " << FoundEvents.GetEvent(Event).GetLocation()->GetStreet() << " " << FoundEvents.GetEvent(Event).GetLocation()->GetNumber() << std::endl;
+			}
+
+			SaveFile << EventToSave.GetEventName() << " " << IntToString(EventToSave.GetDate()[0]->GetThirdValue()) << " " << IntToString(EventToSave.GetDate()[0]->GetSecondValue()) << " 0000 ";
+			SaveFile << IntToString(EventToSave.GetDate()[1]->GetFirstValue()) << " " << IntToString(EventToSave.GetDate()[1]->GetSecondValue());
 			SaveFile << " " << EventToSave.GetLocation()->GetCountry() << " " << EventToSave.GetLocation()->GetTown() << " " << EventToSave.GetLocation()->GetStreet() << " " << EventToSave.GetLocation()->GetNumber() << std::endl;
 		}
 		SaveFile.close();
 	}
-	//Checking if event is periodic. If No then seve to file named with event year.
+	//Checking if event is periodic. If No then save to file named with event year.
 	else {
-		std::ofstream SaveFile(IntToString(EventToSave.GetDate()->GetYear()) + ".txt", std::ofstream::app);
+
+		std::string PeriodicYear[2];
+		PeriodicYear[0] = IntToString(EventToSave.GetDate()[0]->GetFirstValue());
+		PeriodicYear[1] = PeriodicYear[0];
+
+		std::ifstream PreviousFile(IntToString(EventToSave.GetDate()[0]->GetFirstValue()) + ".txt");
+		if (PreviousFile)
+		{
+			//sprawdzenie czy szuka wyda¿eñ
+
+			FoundEvents = FindEvents(PeriodicYear);
+
+			std::cout << FoundEvents.AllEventsSize();
+		}
+		PreviousFile.close();
+
+
+		std::ofstream SaveFile(IntToString(EventToSave.GetDate()[0]->GetFirstValue()) + ".txt");
 		if (SaveFile)
 		{
-			SaveFile << EventToSave.GetEventName() << " " << IntToString(EventToSave.GetDate()->GetDay()) << " " << IntToString(EventToSave.GetDate()->GetMonth()) << " " << IntToString(EventToSave.GetDate()->GetYear());
+			for (int Event = 0; Event < FoundEvents.AllEventsSize(); Event++)
+			{
+
+				//sprawdzenie czy zapisuje wyda¿enia
+
+				SaveFile << FoundEvents.GetEvent(Event).GetEventName() << " " << IntToString(FoundEvents.GetEvent(Event).GetDate()[0]->GetThirdValue()) << " " << IntToString(FoundEvents.GetEvent(Event).GetDate()[0]->GetSecondValue()) << " " << IntToString(FoundEvents.GetEvent(Event).GetDate()[0]->GetFirstValue());
+				SaveFile <<" " << IntToString(FoundEvents.GetEvent(Event).GetDate()[1]->GetFirstValue()) << " " << IntToString(FoundEvents.GetEvent(Event).GetDate()[1]->GetSecondValue());
+				SaveFile << " " << FoundEvents.GetEvent(Event).GetLocation()->GetCountry() << " " << FoundEvents.GetEvent(Event).GetLocation()->GetTown() << " " << FoundEvents.GetEvent(Event).GetLocation()->GetStreet() << " " << FoundEvents.GetEvent(Event).GetLocation()->GetNumber() << std::endl;
+			}
+
+			SaveFile << EventToSave.GetEventName() << " " << IntToString(EventToSave.GetDate()[0]->GetThirdValue()) << " " << IntToString(EventToSave.GetDate()[0]->GetSecondValue()) << " " << IntToString(EventToSave.GetDate()[0]->GetFirstValue());
+			SaveFile << " " << IntToString(EventToSave.GetDate()[1]->GetFirstValue()) << " " << IntToString(EventToSave.GetDate()[1]->GetSecondValue());
 			SaveFile << " " << EventToSave.GetLocation()->GetCountry() << " " << EventToSave.GetLocation()->GetTown() << " " << EventToSave.GetLocation()->GetStreet() << " " << EventToSave.GetLocation()->GetNumber() << std::endl;
 		}
 		SaveFile.close();
@@ -479,11 +755,11 @@ void PrintCalendar(int &Year, EventHolder& allEvents)
 
 	for (int month = 0; month < 12; month++)
 	{
-		days = numberOfDays(month, Year);
+		days = NumberOfDays(month, Year);
 
 
 		// Print the current month name
-		std::cout << "-----------" << getMonthName(month) << "-----------" << std::endl;
+		std::cout << "-----------" << GetMonthName(month) << "-----------" << std::endl;
 
 		// Print the columns
 		std::cout<<" Su  Mo  Tu  We  Th  Fr  Sa\n";
@@ -500,7 +776,7 @@ void PrintCalendar(int &Year, EventHolder& allEvents)
 			bool DayAlreadyPrinted = false;
 			for (int event = 0; event < allEvents.AllEventsSize(); event++)
 			{
-				if (DayAlreadyPrinted == false && allEvents.GetEvent(event).GetDate()->GetDay() == Day && allEvents.GetEvent(event).GetDate()->GetMonth() == (month+1) && (allEvents.GetEvent(event).GetDate()->GetYear() == Year || allEvents.GetEvent(event).GetDate()->GetYear() == 0))
+				if (DayAlreadyPrinted == false && allEvents.GetEvent(event).GetDate()[0]->GetThirdValue() == Day && allEvents.GetEvent(event).GetDate()[0]->GetSecondValue() == (month + 1) && (allEvents.GetEvent(event).GetDate()[0]->GetFirstValue() == Year || allEvents.GetEvent(event).GetDate()[0]->GetFirstValue() == 0))
 				{
 				   if(Day>10)
 				   {
@@ -547,14 +823,14 @@ int DayNumber(int day, int month, int year)
 
 }
 
-std::string getMonthName(int monthNumber)
+std::string GetMonthName(int monthNumber)
 {
 	std::string months[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"};
 
 	return (months[monthNumber]);
 }
 
-int numberOfDays(int monthNumber, int year)
+int NumberOfDays(int monthNumber, int year)
 {
 	switch (monthNumber)
 	{case 0:
