@@ -3,8 +3,9 @@
 This is a console-based calendar application developed as a programming project. It allows users to plan events, view calendars for specific years or intervals, and delete previously planned events. All data is managed using text files, ensuring that events are retained even after closing the program.
 
 
-![image](https://github.com/szymonpoterejkoinfe2/Projects/assets/115418017/bd7b27e5-b034-4f13-8967-51643f4e6b93)
-
+<div style="text-align:center">
+  ![image](https://github.com/szymonpoterejkoinfe2/Projects/assets/115418017/bd7b27e5-b034-4f13-8967-51643f4e6b93)
+</div>
 
 
 ## Table of Contents
